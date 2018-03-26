@@ -4,7 +4,7 @@ using System.Windows.Media;
 using GalaSoft.MvvmLight.Messaging;
 using ListenManager.Database.DataObjects;
 using ListenManager.Database.Handlers;
-using ListenManager.src.Managers.Messages;
+using ListenManager.Managers.Messages;
 
 namespace ListenManager.Managers
 {

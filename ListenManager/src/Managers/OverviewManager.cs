@@ -5,8 +5,8 @@ using GalaSoft.MvvmLight.Messaging;
 using ListenManager.Database.DataObjects;
 using ListenManager.Database.Handlers;
 using ListenManager.Interfaces;
+using ListenManager.Managers.Messages;
 using ListenManager.Managers.Util;
-using ListenManager.src.Managers.Messages;
 
 namespace ListenManager.Managers
 {

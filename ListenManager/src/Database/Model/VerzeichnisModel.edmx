@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="integer" Nullable="false" />
+          <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Key" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="VALUE" Type="nvarchar" MaxLength="2147483647" />
         </EntityType>
@@ -161,7 +161,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Key" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="VALUE" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
         </EntityType>
@@ -209,7 +209,7 @@
           <Property Name="BIC" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="Kreditinstitut" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Ort" Relationship="Self.FK_Mitglied_0_0" FromRole="Mitglied" ToRole="Ort" />
-          <NavigationProperty Name="Verzeichnis" Relationship="Self.Mitglied_Verzeichnis" FromRole="Mitglied" ToRole="Verzeichnis" />
+          <NavigationProperty Name="Verzeichnisse" Relationship="Self.Mitglied_Verzeichnis" FromRole="Mitglied" ToRole="Verzeichnis" />
         </EntityType>
         <EntityType Name="Ort">
           <Key>
@@ -227,8 +227,8 @@
           </Key>
           <Property Name="ID" Type="Int64" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Fieldvisibility" Relationship="Self.FK_Fieldvisibility_0_0" FromRole="Verzeichnis" ToRole="Fieldvisibility" />
-          <NavigationProperty Name="Mitglied" Relationship="Self.Mitglied_Verzeichnis" FromRole="Verzeichnis" ToRole="Mitglied" />
+          <NavigationProperty Name="Fieldvisibilities" Relationship="Self.FK_Fieldvisibility_0_0" FromRole="Verzeichnis" ToRole="Fieldvisibility" />
+          <NavigationProperty Name="Mitglieder" Relationship="Self.Mitglied_Verzeichnis" FromRole="Verzeichnis" ToRole="Mitglied" />
         </EntityType>
         <Association Name="FK_Fieldvisibility_0_0">
           <End Role="Verzeichnis" Type="Self.Verzeichnis" Multiplicity="0..1" />
@@ -260,21 +260,21 @@
         </Association>
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Config" EntityType="Self.Config" />
-          <EntitySet Name="Fieldvisibility" EntityType="Self.Fieldvisibility" />
-          <EntitySet Name="Mitglied" EntityType="Self.Mitglied" />
-          <EntitySet Name="Ort" EntityType="Self.Ort" />
-          <EntitySet Name="Verzeichnis" EntityType="Self.Verzeichnis" />
+          <EntitySet Name="Fieldvisibilities" EntityType="Self.Fieldvisibility" />
+          <EntitySet Name="Mitglieder" EntityType="Self.Mitglied" />
+          <EntitySet Name="Orte" EntityType="Self.Ort" />
+          <EntitySet Name="Verzeichnisse" EntityType="Self.Verzeichnis" />
           <AssociationSet Name="FK_Fieldvisibility_0_0" Association="Self.FK_Fieldvisibility_0_0">
-            <End Role="Verzeichnis" EntitySet="Verzeichnis" />
-            <End Role="Fieldvisibility" EntitySet="Fieldvisibility" />
+            <End Role="Verzeichnis" EntitySet="Verzeichnisse" />
+            <End Role="Fieldvisibility" EntitySet="Fieldvisibilities" />
           </AssociationSet>
           <AssociationSet Name="FK_Mitglied_0_0" Association="Self.FK_Mitglied_0_0">
-            <End Role="Ort" EntitySet="Ort" />
-            <End Role="Mitglied" EntitySet="Mitglied" />
+            <End Role="Ort" EntitySet="Orte" />
+            <End Role="Mitglied" EntitySet="Mitglieder" />
           </AssociationSet>
           <AssociationSet Name="Mitglied_Verzeichnis" Association="Self.Mitglied_Verzeichnis">
-            <End Role="Verzeichnis" EntitySet="Verzeichnis" />
-            <End Role="Mitglied" EntitySet="Mitglied" />
+            <End Role="Verzeichnis" EntitySet="Verzeichnisse" />
+            <End Role="Mitglied" EntitySet="Mitglieder" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -292,7 +292,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Fieldvisibility">
+          <EntitySetMapping Name="Fieldvisibilities">
             <EntityTypeMapping TypeName="mainModel.Fieldvisibility">
               <MappingFragment StoreEntitySet="Fieldvisibility">
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -316,7 +316,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Mitglied">
+          <EntitySetMapping Name="Mitglieder">
             <EntityTypeMapping TypeName="mainModel.Mitglied">
               <MappingFragment StoreEntitySet="Mitglied">
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -337,7 +337,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Ort">
+          <EntitySetMapping Name="Orte">
             <EntityTypeMapping TypeName="mainModel.Ort">
               <MappingFragment StoreEntitySet="Ort">
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -347,7 +347,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Verzeichnis">
+          <EntitySetMapping Name="Verzeichnisse">
             <EntityTypeMapping TypeName="mainModel.Verzeichnis">
               <MappingFragment StoreEntitySet="Verzeichnis">
                 <ScalarProperty Name="ID" ColumnName="ID" />

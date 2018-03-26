@@ -9,7 +9,7 @@ using ListenManager.Database.Handlers;
 using ListenManager.Managers.Util;
 using ListenManager.src.Database.Model;
 using ListenManager.Interfaces;
-using ListenManager.src.Managers.Messages;
+using ListenManager.Managers.Messages;
 
 namespace ListenManager.Managers
 {

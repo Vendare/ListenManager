@@ -17,7 +17,7 @@ namespace ListenManager.src.Database.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Mitglied()
         {
-            this.Verzeichnis = new HashSet<Verzeichnis>();
+            this.Verzeichnisse = new HashSet<Verzeichnis>();
         }
     
         public long ID { get; set; }
@@ -38,6 +38,6 @@ namespace ListenManager.src.Database.Model
     
         public virtual Ort Ort { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Verzeichnis> Verzeichnis { get; set; }
+        public virtual ICollection<Verzeichnis> Verzeichnisse { get; set; }
     }
 }

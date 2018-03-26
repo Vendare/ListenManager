@@ -26,9 +26,9 @@ namespace ListenManager.src.Database.Model
         }
     
         public virtual DbSet<Config> Config { get; set; }
-        public virtual DbSet<Fieldvisibility> Fieldvisibility { get; set; }
-        public virtual DbSet<Mitglied> Mitglied { get; set; }
-        public virtual DbSet<Ort> Ort { get; set; }
-        public virtual DbSet<Verzeichnis> Verzeichnis { get; set; }
+        public virtual DbSet<Fieldvisibility> Fieldvisibilities { get; set; }
+        public virtual DbSet<Mitglied> Mitglieder { get; set; }
+        public virtual DbSet<Ort> Orte { get; set; }
+        public virtual DbSet<Verzeichnis> Verzeichnisse { get; set; }
     }
 }

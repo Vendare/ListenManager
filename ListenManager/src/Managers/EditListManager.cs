@@ -163,17 +163,17 @@ namespace ListenManager.Managers
 
             foreach (var mil in MitgliederInList)
             {
-                if (!_originalVerzeichnis.Mitglied.Contains(mil.SourceMitglied))
+                if (!_originalVerzeichnis.Mitglieder.Contains(mil.SourceMitglied))
                 {
-                    _originalVerzeichnis.Mitglied.Add(mil.SourceMitglied);
+                    _originalVerzeichnis.Mitglieder.Add(mil.SourceMitglied);
                 }
             }
 
             foreach (var mil in AvailableMitglieder)
             {
-                if (_originalVerzeichnis.Mitglied.Contains(mil.SourceMitglied))
+                if (_originalVerzeichnis.Mitglieder.Contains(mil.SourceMitglied))
                 {
-                    _originalVerzeichnis.Mitglied.Remove(mil.SourceMitglied);
+                    _originalVerzeichnis.Mitglieder.Remove(mil.SourceMitglied);
                 }
             }
 

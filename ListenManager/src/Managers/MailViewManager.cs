@@ -35,6 +35,16 @@ namespace ListenManager.Managers
             SelectedListe = alle;
         }
 
+        public ObservableCollection<MailAttachment> Attachments
+        {
+            get => _attachments;
+            set
+            {
+                _attachments = value;
+                OnPropertyChanged(nameof(Attachments));
+            }
+        }
+
         public ObservableCollection<VereinsMitglied> MitgliederOhneEmail
         {
             get => _mitgliederOhneEmail;

@@ -12,7 +12,7 @@ namespace ListenManager.Database.Handlers
     {
         private static VerzeichnisHandler _instance;
         private static Visibilities _defaultVisibilities;
-        private readonly mainEntities _context;
+        private readonly Entities _context;
         private readonly DateTime _compareMinDate;
         private readonly DateTime _compareMaxDate;
         public static VerzeichnisHandler Instance => _instance ?? (_instance = new VerzeichnisHandler());
@@ -41,7 +41,7 @@ namespace ListenManager.Database.Handlers
 
         private VerzeichnisHandler()
         {
-            _context = new mainEntities();
+            _context = new Entities();
             _compareMinDate = DateTime.Now.Subtract(new TimeSpan(7, 0, 0, 0));
             _compareMaxDate = DateTime.Now.AddDays(38);
         }
@@ -56,8 +56,8 @@ namespace ListenManager.Database.Handlers
         {
             var insert = mitglieder.Select(row => row.SourceMitglied).ToList();
 
-            verzeichnis.Fieldvisibility = new List<Fieldvisibility>() { visibilities };
-            verzeichnis.Mitglied = insert;
+            verzeichnis.Fieldvisibilities = new List<Fieldvisibility>() { visibilities };
+            verzeichnis.Mitglieder = insert;
 
             _context.Verzeichnisse.Add(verzeichnis);
             _context.Fieldvisibilities.Add(visibilities);
@@ -76,7 +76,7 @@ namespace ListenManager.Database.Handlers
         public ObservableCollection<VereinsMitglied> GetMitgliederInVerzeichnis(long id)
         {
             var tmp = (from m in _context.Mitglieder
-                where m.Verzeichnis.Any(p => p.ID == id)
+                where m.Verzeichnisse.Any(p => p.ID == id)
                 select m).ToList();
 
             return CreateObservableCollection(tmp);
@@ -85,7 +85,7 @@ namespace ListenManager.Database.Handlers
         public ObservableCollection<VereinsMitglied> GetMitgliederAvailableForList(long id)
         {
             var tmp = (from m in _context.Mitglieder
-                       where m.Verzeichnis.Any(p => p.ID != id) || !m.Verzeichnis.Any()
+                       where m.Verzeichnisse.Any(p => p.ID != id) || !m.Verzeichnisse.Any()
                        select m).ToList();
 
             return CreateObservableCollection(tmp);

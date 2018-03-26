@@ -17,16 +17,16 @@ namespace ListenManager.src.Database.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Verzeichnis()
         {
-            this.Fieldvisibility = new HashSet<Fieldvisibility>();
-            this.Mitglied = new HashSet<Mitglied>();
+            this.Fieldvisibilities = new HashSet<Fieldvisibility>();
+            this.Mitglieder = new HashSet<Mitglied>();
         }
     
         public long ID { get; set; }
         public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Fieldvisibility> Fieldvisibility { get; set; }
+        public virtual ICollection<Fieldvisibility> Fieldvisibilities { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Mitglied> Mitglied { get; set; }
+        public virtual ICollection<Mitglied> Mitglieder { get; set; }
     }
 }
