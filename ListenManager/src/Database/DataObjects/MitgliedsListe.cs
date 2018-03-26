@@ -3,22 +3,22 @@ using ListenManager.src.Database.Model;
 
 namespace ListenManager.Database.DataObjects
 {
-
-
     public class MitgliedsListe : BaseDataObject
     {
         private Verzeichnis _sourceVerzeichnis;
         private string _name;
+
         public Verzeichnis SourceVerzeichnis
         {
             get => _sourceVerzeichnis;
             set
             {
-                if(value.Equals(_sourceVerzeichnis)) return;
+                if(value == null || value.Equals(_sourceVerzeichnis)) return;
                 _sourceVerzeichnis = value;
                 OnPropertyChanged(nameof(SourceVerzeichnis));
             }
         }
+
         public string Name
         {
             get => SourceVerzeichnis == null ? _name : SourceVerzeichnis.Name;
