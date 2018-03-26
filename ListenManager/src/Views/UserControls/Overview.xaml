@@ -1,0 +1,63 @@
+﻿<UserControl x:Class="ListenManager.Views.UserControls.Overview"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:om="clr-namespace:ListenManager.Managers"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" 
+      d:DesignWidth="300"
+      >
+    <UserControl.Resources>
+        <om:OverviewManager x:Key="OverviewManager" />
+    </UserControl.Resources>
+    <Grid Margin="0,0,0,0">
+        <DataGrid Margin="0,0,0,0" 
+                  AutoGenerateColumns="False" 
+                  CanUserAddRows="False" 
+                  CanUserDeleteRows="False" 
+                  IsReadOnly="True" 
+                  ItemsSource="{Binding Source={StaticResource OverviewManager}, Path=Mitglieder}"
+                  SelectionMode="Single"
+                  SelectedItem="{Binding Source={StaticResource OverviewManager}, Path=SelectedVereinsMitglied}"
+                  GridLinesVisibility="All"
+                  VerticalGridLinesBrush="White"
+                  >
+            <DataGrid.InputBindings>
+                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding Source={StaticResource OverviewManager}, Path=UpdateCommand}"/>
+            </DataGrid.InputBindings>
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Mitgliedsnr}" Header="Mitgliedsnummer" />
+                <DataGridTextColumn Binding="{Binding Anrede}" Header="Anrede" />
+                <DataGridTextColumn Binding="{Binding Vorname}" Header="Vorname" />
+                <DataGridTextColumn Binding="{Binding Name}" Header="Nachname" />
+                <DataGridTextColumn Binding="{Binding Straße}" Header="Straße" />
+                <DataGridTextColumn Binding="{Binding Postleitzahl}" Header="Postleitzahl" />
+                <DataGridTextColumn Binding="{Binding Ort}" Header="Ort" />
+                <DataGridTextColumn Binding="{Binding Bundesland}" Header="Bundesland" />
+                <DataGridTextColumn Binding="{Binding Email}" Header="E-Mail" />
+                <DataGridTextColumn Binding="{Binding Telefon}" Header="E-Mail" />
+                <DataGridTextColumn Binding="{Binding Mobil}" Header="E-Mail" />
+                <DataGridTextColumn Binding="{Binding Eintrittsdatum, StringFormat={}{0:dd.MM.yyyy}}" Header="Eintrittsdatum" />
+                <DataGridTextColumn Binding="{Binding Geburtsdatum, StringFormat={}{0:dd.MM.yyyy}}" Header="Geburtsdatum" />
+                <DataGridTextColumn Binding="{Binding IBAN}" Header="IBAN" />
+                <DataGridTextColumn Binding="{Binding BIC}" Header="BIC" />
+                <DataGridTextColumn Binding="{Binding Kreditinstitut}" Header="Kreditinstitut" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Margin="0,0,10,15" 
+                Height="50" 
+                Width="50" 
+                Background="{DynamicResource AccentColorBrush}"
+                Style="{DynamicResource MetroCircleButtonStyle}"
+                Command="{Binding Source={StaticResource OverviewManager}, Path=AddCommand}"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom" >
+            <Rectangle Width="20" Height="20">
+            <Rectangle.Fill>
+                    <VisualBrush Visual="{StaticResource appbar_add}" Stretch="Fill" />
+            </Rectangle.Fill>
+            </Rectangle>
+        </Button>
+    </Grid>
+</UserControl>

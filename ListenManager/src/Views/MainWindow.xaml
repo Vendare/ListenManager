@@ -1,0 +1,75 @@
+﻿<cs:MetroWindow x:Class="ListenManager.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ad="http://schemas.xceed.com/wpf/xaml/avalondock"
+        xmlns:cs="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:uc="clr-namespace:ListenManager.Views.UserControls"
+        mc:Ignorable="d"
+        Title="Mitgliederverzeichnis" 
+        Height="600" 
+        Width="900"
+        WindowStartupLocation="CenterScreen"
+        BorderBrush="{Binding Source={StaticResource MainWindowManager}, Path=CurrentBorderBrush}"
+        GlowBrush="{DynamicResource AccentColorBrush}"
+        >
+    <cs:MetroWindow.RightWindowCommands>
+        <cs:WindowCommands>
+            <Button Content="Einstellungen" />
+        </cs:WindowCommands>
+    </cs:MetroWindow.RightWindowCommands>
+    <cs:MetroAnimatedTabControl >
+        <cs:MetroTabItem Header="Mitgliederübersicht">
+            <ad:DockingManager>
+                <ad:LayoutRoot>
+                    <ad:LayoutPanel Orientation="Horizontal">
+                        <ad:LayoutAnchorablePane DockWidth="7*">
+                            <ad:LayoutAnchorable CanHide="False" 
+                                                 CanClose="False" 
+                                                 CanAutoHide="False">
+                                <uc:Overview />
+                            </ad:LayoutAnchorable>
+                        </ad:LayoutAnchorablePane>
+                        <ad:LayoutAnchorablePane DockWidth="2*" >
+                            <ad:LayoutAnchorable CanAutoHide="False">
+                                <Grid>
+                                    <Calendar Margin="10,10,10,0" 
+                                      Height="230" 
+                                      VerticalAlignment="Top"
+                                      HorizontalContentAlignment="Center"/>
+                                    <GroupBox Header="Anstehende Geburtstage" 
+                                      Margin="10,240,10,10"
+                                      BorderBrush="White">
+                                        <ListBox SelectionMode="Single"
+                                         ItemsSource="{Binding Source={StaticResource MainWindowManager}, Path=BirthdayMitglieder}">
+                                            <ListBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock>
+                                                        <TextBlock.Text>
+                                                            <MultiBinding StringFormat="{}{0:dd.MM.} {1} {2}" >
+                                                                <Binding Path="Geburtsdatum"/>
+                                                                <Binding Path="Vorname" />
+                                                                <Binding Path="Name" />
+                                                            </MultiBinding>
+                                                        </TextBlock.Text>
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </ListBox.ItemTemplate>
+                                        </ListBox>
+                                    </GroupBox>
+                                </Grid>
+                            </ad:LayoutAnchorable>
+                        </ad:LayoutAnchorablePane>
+                    </ad:LayoutPanel>
+                </ad:LayoutRoot>
+            </ad:DockingManager>
+        </cs:MetroTabItem>
+        <cs:MetroTabItem Header="Listen">
+            <uc:ListView />
+        </cs:MetroTabItem>
+        <cs:MetroTabItem Header="Export">
+        </cs:MetroTabItem>
+    </cs:MetroAnimatedTabControl>
+</cs:MetroWindow>
+

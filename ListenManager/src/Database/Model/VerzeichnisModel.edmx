@@ -1,0 +1,389 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="mainModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="Data Source=&quot;D:\Entwicklung\C# Bastelecke\ListenManager\ListenManager\Data\Mitgliederverzeichnis.sqlite&quot;;DateTime Format=CurrentCulture;DateTime Kind=Local;Foreign Keys=True" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Config">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" />
+          <Property Name="Key" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="VALUE" Type="nvarchar" MaxLength="2147483647" />
+        </EntityType>
+        <EntityType Name="Fieldvisibility">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" />
+          <Property Name="ID_Verzeichnis" Type="integer" />
+          <Property Name="Anrede" Type="bit" />
+          <Property Name="Mitgliedsnr" Type="bit" />
+          <Property Name="Vorname" Type="bit" />
+          <Property Name="Name" Type="bit" />
+          <Property Name="Straße" Type="bit" />
+          <Property Name="Plz" Type="bit" />
+          <Property Name="Ort" Type="bit" />
+          <Property Name="Bundesland" Type="bit" />
+          <Property Name="Telefon" Type="bit" />
+          <Property Name="Mobil" Type="bit" />
+          <Property Name="eMail" Type="bit" />
+          <Property Name="Eintrittsdatum" Type="bit" />
+          <Property Name="Geburtsdatum" Type="bit" />
+          <Property Name="IBAN" Type="bit" />
+          <Property Name="BIC" Type="bit" />
+          <Property Name="Kreditinstitut" Type="bit" />
+        </EntityType>
+        <EntityType Name="Mitglied">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" />
+          <Property Name="Mitgliedsnr" Type="integer" />
+          <Property Name="Anrede" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Vorname" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Name" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Straße" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="ID_Ort" Type="integer" />
+          <Property Name="Telefon" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Mobil" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="eMail" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Eintrittsdatum" Type="datetime" />
+          <Property Name="Geburtsdatum" Type="datetime" />
+          <Property Name="IBAN" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="BIC" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Kreditinstitut" Type="nvarchar" MaxLength="2147483647" />
+        </EntityType>
+        <EntityType Name="Mitglied_Verzeichnis">
+          <Key>
+            <PropertyRef Name="ID_Mitglied" />
+            <PropertyRef Name="ID_Verzeichnis" />
+          </Key>
+          <Property Name="ID_Mitglied" Type="integer" Nullable="false" />
+          <Property Name="ID_Verzeichnis" Type="integer" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ort">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" />
+          <Property Name="PLZ" Type="integer" />
+          <Property Name="Name" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Bundesland" Type="nvarchar" MaxLength="2147483647" />
+        </EntityType>
+        <EntityType Name="Verzeichnis">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="2147483647" />
+        </EntityType>
+        <Association Name="FK_Fieldvisibility_0_0">
+          <End Role="Verzeichnis" Type="Self.Verzeichnis" Multiplicity="0..1" />
+          <End Role="Fieldvisibility" Type="Self.Fieldvisibility" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Verzeichnis">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Fieldvisibility">
+              <PropertyRef Name="ID_Verzeichnis" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mitglied_0_0">
+          <End Role="Ort" Type="Self.Ort" Multiplicity="0..1" />
+          <End Role="Mitglied" Type="Self.Mitglied" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ort">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Mitglied">
+              <PropertyRef Name="ID_Ort" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mitglied_Verzeichnis_0_0">
+          <End Role="Verzeichnis" Type="Self.Verzeichnis" Multiplicity="1" />
+          <End Role="Mitglied_Verzeichnis" Type="Self.Mitglied_Verzeichnis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Verzeichnis">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Mitglied_Verzeichnis">
+              <PropertyRef Name="ID_Verzeichnis" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mitglied_Verzeichnis_1_0">
+          <End Role="Mitglied" Type="Self.Mitglied" Multiplicity="1" />
+          <End Role="Mitglied_Verzeichnis" Type="Self.Mitglied_Verzeichnis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mitglied">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Mitglied_Verzeichnis">
+              <PropertyRef Name="ID_Mitglied" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="mainModelStoreContainer">
+          <EntitySet Name="Config" EntityType="Self.Config" store:Type="Tables" />
+          <EntitySet Name="Fieldvisibility" EntityType="Self.Fieldvisibility" store:Type="Tables" />
+          <EntitySet Name="Mitglied" EntityType="Self.Mitglied" store:Type="Tables" />
+          <EntitySet Name="Mitglied_Verzeichnis" EntityType="Self.Mitglied_Verzeichnis" store:Type="Tables" />
+          <EntitySet Name="Ort" EntityType="Self.Ort" store:Type="Tables" />
+          <EntitySet Name="Verzeichnis" EntityType="Self.Verzeichnis" store:Type="Tables" />
+          <AssociationSet Name="FK_Fieldvisibility_0_0" Association="Self.FK_Fieldvisibility_0_0">
+            <End Role="Verzeichnis" EntitySet="Verzeichnis" />
+            <End Role="Fieldvisibility" EntitySet="Fieldvisibility" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mitglied_0_0" Association="Self.FK_Mitglied_0_0">
+            <End Role="Ort" EntitySet="Ort" />
+            <End Role="Mitglied" EntitySet="Mitglied" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mitglied_Verzeichnis_0_0" Association="Self.FK_Mitglied_Verzeichnis_0_0">
+            <End Role="Verzeichnis" EntitySet="Verzeichnis" />
+            <End Role="Mitglied_Verzeichnis" EntitySet="Mitglied_Verzeichnis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mitglied_Verzeichnis_1_0" Association="Self.FK_Mitglied_Verzeichnis_1_0">
+            <End Role="Mitglied" EntitySet="Mitglied" />
+            <End Role="Mitglied_Verzeichnis" EntitySet="Mitglied_Verzeichnis" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="mainModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Config">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="Key" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="VALUE" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Fieldvisibility">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="ID_Verzeichnis" Type="Int64" />
+          <Property Name="Anrede" Type="Boolean" />
+          <Property Name="Mitgliedsnr" Type="Boolean" />
+          <Property Name="Vorname" Type="Boolean" />
+          <Property Name="Name" Type="Boolean" />
+          <Property Name="Straße" Type="Boolean" />
+          <Property Name="Plz" Type="Boolean" />
+          <Property Name="Ort" Type="Boolean" />
+          <Property Name="Bundesland" Type="Boolean" />
+          <Property Name="Telefon" Type="Boolean" />
+          <Property Name="Mobil" Type="Boolean" />
+          <Property Name="eMail" Type="Boolean" />
+          <Property Name="Eintrittsdatum" Type="Boolean" />
+          <Property Name="Geburtsdatum" Type="Boolean" />
+          <Property Name="IBAN" Type="Boolean" />
+          <Property Name="BIC" Type="Boolean" />
+          <Property Name="Kreditinstitut" Type="Boolean" />
+          <NavigationProperty Name="Verzeichnis" Relationship="Self.FK_Fieldvisibility_0_0" FromRole="Fieldvisibility" ToRole="Verzeichnis" />
+        </EntityType>
+        <EntityType Name="Mitglied">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="Mitgliedsnr" Type="Int64" />
+          <Property Name="Anrede" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Vorname" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Straße" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="ID_Ort" Type="Int64" />
+          <Property Name="Telefon" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Mobil" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="eMail" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Eintrittsdatum" Type="DateTime" />
+          <Property Name="Geburtsdatum" Type="DateTime" />
+          <Property Name="IBAN" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="BIC" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Kreditinstitut" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Ort" Relationship="Self.FK_Mitglied_0_0" FromRole="Mitglied" ToRole="Ort" />
+          <NavigationProperty Name="Verzeichnis" Relationship="Self.Mitglied_Verzeichnis" FromRole="Mitglied" ToRole="Verzeichnis" />
+        </EntityType>
+        <EntityType Name="Ort">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="PLZ" Type="Int64" />
+          <Property Name="Name" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Bundesland" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Mitglied" Relationship="Self.FK_Mitglied_0_0" FromRole="Ort" ToRole="Mitglied" />
+        </EntityType>
+        <EntityType Name="Verzeichnis">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Fieldvisibility" Relationship="Self.FK_Fieldvisibility_0_0" FromRole="Verzeichnis" ToRole="Fieldvisibility" />
+          <NavigationProperty Name="Mitglied" Relationship="Self.Mitglied_Verzeichnis" FromRole="Verzeichnis" ToRole="Mitglied" />
+        </EntityType>
+        <Association Name="FK_Fieldvisibility_0_0">
+          <End Role="Verzeichnis" Type="Self.Verzeichnis" Multiplicity="0..1" />
+          <End Role="Fieldvisibility" Type="Self.Fieldvisibility" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Verzeichnis">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Fieldvisibility">
+              <PropertyRef Name="ID_Verzeichnis" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mitglied_0_0">
+          <End Role="Ort" Type="Self.Ort" Multiplicity="0..1" />
+          <End Role="Mitglied" Type="Self.Mitglied" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ort">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Mitglied">
+              <PropertyRef Name="ID_Ort" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Mitglied_Verzeichnis">
+          <End Role="Verzeichnis" Type="Self.Verzeichnis" Multiplicity="*" />
+          <End Role="Mitglied" Type="Self.Mitglied" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Config" EntityType="Self.Config" />
+          <EntitySet Name="Fieldvisibility" EntityType="Self.Fieldvisibility" />
+          <EntitySet Name="Mitglied" EntityType="Self.Mitglied" />
+          <EntitySet Name="Ort" EntityType="Self.Ort" />
+          <EntitySet Name="Verzeichnis" EntityType="Self.Verzeichnis" />
+          <AssociationSet Name="FK_Fieldvisibility_0_0" Association="Self.FK_Fieldvisibility_0_0">
+            <End Role="Verzeichnis" EntitySet="Verzeichnis" />
+            <End Role="Fieldvisibility" EntitySet="Fieldvisibility" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mitglied_0_0" Association="Self.FK_Mitglied_0_0">
+            <End Role="Ort" EntitySet="Ort" />
+            <End Role="Mitglied" EntitySet="Mitglied" />
+          </AssociationSet>
+          <AssociationSet Name="Mitglied_Verzeichnis" Association="Self.Mitglied_Verzeichnis">
+            <End Role="Verzeichnis" EntitySet="Verzeichnis" />
+            <End Role="Mitglied" EntitySet="Mitglied" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="mainModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Config">
+            <EntityTypeMapping TypeName="mainModel.Config">
+              <MappingFragment StoreEntitySet="Config">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fieldvisibility">
+            <EntityTypeMapping TypeName="mainModel.Fieldvisibility">
+              <MappingFragment StoreEntitySet="Fieldvisibility">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_Verzeichnis" ColumnName="ID_Verzeichnis" />
+                <ScalarProperty Name="Anrede" ColumnName="Anrede" />
+                <ScalarProperty Name="Mitgliedsnr" ColumnName="Mitgliedsnr" />
+                <ScalarProperty Name="Vorname" ColumnName="Vorname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Straße" ColumnName="Straße" />
+                <ScalarProperty Name="Plz" ColumnName="Plz" />
+                <ScalarProperty Name="Ort" ColumnName="Ort" />
+                <ScalarProperty Name="Bundesland" ColumnName="Bundesland" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="Mobil" ColumnName="Mobil" />
+                <ScalarProperty Name="eMail" ColumnName="eMail" />
+                <ScalarProperty Name="Eintrittsdatum" ColumnName="Eintrittsdatum" />
+                <ScalarProperty Name="Geburtsdatum" ColumnName="Geburtsdatum" />
+                <ScalarProperty Name="IBAN" ColumnName="IBAN" />
+                <ScalarProperty Name="BIC" ColumnName="BIC" />
+                <ScalarProperty Name="Kreditinstitut" ColumnName="Kreditinstitut" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mitglied">
+            <EntityTypeMapping TypeName="mainModel.Mitglied">
+              <MappingFragment StoreEntitySet="Mitglied">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Mitgliedsnr" ColumnName="Mitgliedsnr" />
+                <ScalarProperty Name="Anrede" ColumnName="Anrede" />
+                <ScalarProperty Name="Vorname" ColumnName="Vorname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Straße" ColumnName="Straße" />
+                <ScalarProperty Name="ID_Ort" ColumnName="ID_Ort" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="Mobil" ColumnName="Mobil" />
+                <ScalarProperty Name="eMail" ColumnName="eMail" />
+                <ScalarProperty Name="Eintrittsdatum" ColumnName="Eintrittsdatum" />
+                <ScalarProperty Name="Geburtsdatum" ColumnName="Geburtsdatum" />
+                <ScalarProperty Name="IBAN" ColumnName="IBAN" />
+                <ScalarProperty Name="BIC" ColumnName="BIC" />
+                <ScalarProperty Name="Kreditinstitut" ColumnName="Kreditinstitut" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ort">
+            <EntityTypeMapping TypeName="mainModel.Ort">
+              <MappingFragment StoreEntitySet="Ort">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PLZ" ColumnName="PLZ" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Bundesland" ColumnName="Bundesland" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Verzeichnis">
+            <EntityTypeMapping TypeName="mainModel.Verzeichnis">
+              <MappingFragment StoreEntitySet="Verzeichnis">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Mitglied_Verzeichnis" TypeName="mainModel.Mitglied_Verzeichnis" StoreEntitySet="Mitglied_Verzeichnis">
+            <EndProperty Name="Verzeichnis">
+              <ScalarProperty Name="ID" ColumnName="ID_Verzeichnis" />
+            </EndProperty>
+            <EndProperty Name="Mitglied">
+              <ScalarProperty Name="ID" ColumnName="ID_Mitglied" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Kein" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

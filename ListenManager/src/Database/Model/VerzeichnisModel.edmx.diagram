@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="73eec08742f146c98db57adc36825294" Name="Diagram1">
+        <EntityTypeShape EntityType="mainModel.Config" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="mainModel.Fieldvisibility" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="mainModel.Mitglied" Width="1.5" PointX="7" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="mainModel.Ort" Width="1.5" PointX="9.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="mainModel.Verzeichnis" Width="1.5" PointX="5" PointY="5.125" IsExpanded="true" />
+        <AssociationConnector Association="mainModel.FK_Fieldvisibility_0_0" ManuallyRouted="false" />
+        <AssociationConnector Association="mainModel.FK_Mitglied_0_0" ManuallyRouted="false" />
+        <AssociationConnector Association="mainModel.Mitglied_Verzeichnis" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
