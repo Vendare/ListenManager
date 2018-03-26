@@ -68,7 +68,8 @@
         <cs:MetroTabItem Header="Listen">
             <uc:ListView />
         </cs:MetroTabItem>
-        <cs:MetroTabItem Header="Export">
+        <cs:MetroTabItem Header="E-Mail senden">
+            <uc:MailView/>
         </cs:MetroTabItem>
     </cs:MetroAnimatedTabControl>
 </cs:MetroWindow>

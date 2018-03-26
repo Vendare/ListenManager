@@ -237,5 +237,21 @@ namespace ListenManager.Database.Handlers
                 where o.ID == idOrt
                 select o).ToList().FirstOrDefault();
         }
+
+        public SortedDictionary<ConfigType, string> GetConfig()
+        {
+            var data = (from c in _context.Config
+                        select c).ToList();
+
+            var rueck = new SortedDictionary<ConfigType, string>();
+
+            foreach (var row in data)
+            {
+                Enum.TryParse(row.Key, out ConfigType con);
+                rueck.Add(con, row.VALUE);
+            }
+
+            return rueck;
+        }
     }
 }

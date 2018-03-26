@@ -160,11 +160,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>VerzeichnisModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="src\Enums\ConfigType.cs" />
     <Compile Include="src\Enums\ListType.cs" />
     <Compile Include="src\Interfaces\IClosable.cs" />
     <Compile Include="src\Interfaces\IWindowService.cs" />
     <Compile Include="src\Mail\MailClient.cs" />
     <Compile Include="src\Managers\BaseManager.cs" />
+    <Compile Include="src\Managers\ConfigViewManager.cs" />
     <Compile Include="src\Managers\EditListManager.cs" />
     <Compile Include="src\Managers\EditMemberManager.cs" />
     <Compile Include="src\Managers\ListViewManager.cs" />

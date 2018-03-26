@@ -8,6 +8,7 @@ namespace ListenManager.Database.DataObjects
     public class MitgliedsListe : BaseDataObject
     {
         private Verzeichnis _sourceVerzeichnis;
+        private string _name;
         public Verzeichnis SourceVerzeichnis
         {
             get => _sourceVerzeichnis;
@@ -20,11 +21,19 @@ namespace ListenManager.Database.DataObjects
         }
         public string Name
         {
-            get => SourceVerzeichnis.Name ?? "";
+            get => SourceVerzeichnis == null ? _name : SourceVerzeichnis.Name;
             set
             {
-                if (value.Equals(SourceVerzeichnis.Name)) return;
-                SourceVerzeichnis.Name = value;
+                if (value.Equals(SourceVerzeichnis?.Name)) return;
+                if (SourceVerzeichnis == null)
+                {
+                    _name = value;
+                }
+                else
+                {
+                    SourceVerzeichnis.Name = value;
+                }
+                
                 OnPropertyChanged(nameof(Name));
             }
         }
