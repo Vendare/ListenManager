@@ -33,10 +33,9 @@
                                          CanHide="False">
                             <Grid>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="4*"/>
-                                    <RowDefinition Height="2*"/>
                                     <RowDefinition Height="2*"/>
                                     <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1.5*"/>
                                 </Grid.RowDefinitions>
                                 <Label Margin="10,10,0,0"
                                        Width="60"
@@ -47,12 +46,14 @@
                                        VerticalAlignment="Top"/>
                                 <TextBox Margin="70,10,10,0"
                                          Grid.Row="0"
-                                         VerticalAlignment="Top" />
+                                         VerticalAlignment="Top" Height="26"
+                                         Text="{Binding Source={StaticResource MailViewManager}, Path=Subject}"/>
 
                                 <RichTextBox Margin="10,40,10,10"
-                                             Grid.Row="0"/>
+                                             Grid.Row="0"
+                                             />
 
-                                <Label Margin="10,0,10,0"
+                                <Label Margin="10,0,0,0"
                                        Grid.Row="1"
                                        Content="Attachments"
                                        Height="30"
@@ -67,7 +68,8 @@
                                         Height="30"
                                         Style="{DynamicResource SquareButtonStyle}"
                                         HorizontalAlignment="Right"
-                                        VerticalAlignment="Top"/>
+                                        VerticalAlignment="Top"
+                                        Command="{Binding Source={StaticResource MailViewManager}, Path=DeleteAttachmetCommand}"/>
 
                                 <Button Margin="0,0,100,0"
                                         Grid.Row="1"
@@ -76,52 +78,78 @@
                                         Height="30"
                                         Style="{DynamicResource AccentedSquareButtonStyle}"
                                         HorizontalAlignment="Right"
-                                        VerticalAlignment="Top"/>
+                                        VerticalAlignment="Top"
+                                        Command="{Binding Source={StaticResource MailViewManager}, Path=AddAttachmetCommand}"/>
 
                                 <ScrollViewer Margin="10,35,10,10" 
                                               Grid.Row="1">
-                                    <ItemsControl>
-                                        <ItemsControl.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <WrapPanel />
-                                        </ItemsPanelTemplate>
-                                    </ItemsControl.ItemsPanel>
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Image Source="{Binding AttachmentIcon}" />
-                                                <TextBlock Text=" " />
-                                                <TextBlock Text="{Binding Name}" />
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                                </ScrollViewer>
-
-                                <GroupBox Margin="10,0,10,0" 
-                                          Header="Mitglieder in der Liste ohne eingetragene E-Mail"
-                                          Grid.Row="2" >
-                                    <ScrollViewer>
-                                    <ItemsControl ItemsSource="{Binding Source={StaticResource MailViewManager}, Path=MitgliederOhneEmail}">
-                                        <ItemsControl.ItemsPanel>
+                                    <ListView ItemsSource="{Binding Source={StaticResource MailViewManager}, Path=Attachments}"
+                                              SelectedItem="{Binding Source={StaticResource MailViewManager}, Path=SelectedAttachment}">
+                                        <ListView.ItemsPanel>
                                             <ItemsPanelTemplate>
                                                 <WrapPanel />
                                             </ItemsPanelTemplate>
-                                        </ItemsControl.ItemsPanel>
-                                        <ItemsControl.ItemTemplate>
+                                        </ListView.ItemsPanel>
+                                        <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">
-                                                    <TextBlock Text="{Binding Anrede}" />
-                                                    <TextBlock Text=" " />
-                                                    <TextBlock Text="{Binding Vorname}" />
+                                                    <Image Source="{Binding AttachmentIcon}" />
                                                     <TextBlock Text=" " />
                                                     <TextBlock Text="{Binding Name}" />
+                                                    <StackPanel.InputBindings>
+                                                        <MouseBinding Gesture="LeftDoubleClick" Command="{Binding Source={StaticResource MailViewManager}, Path=ShowAttachmentFileCommand}"/>
+                                                    </StackPanel.InputBindings>
                                                 </StackPanel>
                                             </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                    </ItemsControl>
+                                        </ListView.ItemTemplate>
+                                        <ListView.InputBindings>
+                                            <KeyBinding Key="Delete" Command="{Binding Source={StaticResource MailViewManager}, Path=DeleteAttachmetCommand}" />
+                                        </ListView.InputBindings>
+                                    </ListView>
+                                </ScrollViewer>
+
+                                <GroupBox Margin="10,0,10,50" 
+                                          Header="Mitglieder in der Liste ohne eingetragene E-Mail"
+                                          Grid.Row="2" >
+                                    <ScrollViewer>
+                                        <ListView ItemsSource="{Binding Source={StaticResource MailViewManager}, Path=MitgliederOhneEmail}"
+                                                  SelectionMode="Single">
+                                            <ListView.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <WrapPanel />
+                                                </ItemsPanelTemplate>
+                                            </ListView.ItemsPanel>
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="{Binding Vorname}" />
+                                                        <TextBlock Text=" " />
+                                                        <TextBlock Text="{Binding Name}" />
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
                                     </ScrollViewer>
                                 </GroupBox>
+                                <Button Grid.Row="2"
+                                        Margin="0,0,10,10"
+                                        Height="30"
+                                        Width="80"
+                                        Content="senden"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Bottom"
+                                        Style="{DynamicResource AccentedSquareButtonStyle}"
+                                        Command="{Binding Source={StaticResource MailViewManager}, Path=SendMailCommand}"/>
+
+                                <Button Grid.Row="2"
+                                        Margin="10,0,0,10"
+                                        Height="30"
+                                        Width="120"
+                                        Content="eingaben löschen"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Bottom"
+                                        Style="{DynamicResource SquareButtonStyle}"
+                                        Command="{Binding Source={StaticResource MailViewManager}, Path=ClearUserInputCommand}"/>
                             </Grid>
                         </xcad:LayoutAnchorable>
                     </xcad:LayoutAnchorablePane>

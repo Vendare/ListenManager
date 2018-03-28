@@ -2,6 +2,7 @@
 using System.IO;
 using System.Net;
 using System.Net.Mail;
+using System.Security;
 using ListenManager.Database.DataObjects;
 
 namespace ListenManager.Mail
@@ -18,7 +19,7 @@ namespace ListenManager.Mail
         public List<FileInfo> Anhaenge { get; set; }
         public string MailServerAdress { get; set; }
         public string User { get; set; }
-        public string Passwort { get; set; }
+        public SecureString Passwort { get; set; }
 
         private MailClient()
         {
@@ -57,7 +58,7 @@ namespace ListenManager.Mail
                 Credentials = new NetworkCredential()
                 {
                     UserName = User,
-                    Password = Passwort
+                    SecurePassword = Passwort
                 }
             };
 

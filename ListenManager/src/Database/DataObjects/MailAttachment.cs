@@ -1,5 +1,8 @@
 ﻿using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace ListenManager.Database.DataObjects
 {
@@ -7,7 +10,8 @@ namespace ListenManager.Database.DataObjects
     {
         private FileInfo _attchmentFileInfo;
 
-        public Icon AttachmentIcon => Icon.ExtractAssociatedIcon(_attchmentFileInfo.FullName);
+        public ImageSource AttachmentIcon { get; private set; }
+
 
         public string Name => _attchmentFileInfo.Name;
 
@@ -17,6 +21,18 @@ namespace ListenManager.Database.DataObjects
             set
             {
                 _attchmentFileInfo = value;
+
+                var icon = Icon.ExtractAssociatedIcon(_attchmentFileInfo.FullName);
+
+                if (icon == null) return;
+
+                using (var bmp = icon.ToBitmap())
+                {
+                    var stream = new MemoryStream();
+                    bmp.Save(stream, ImageFormat.Png);
+                    AttachmentIcon = BitmapFrame.Create(stream);
+                }
+
                 OnPropertyChanged(nameof(Name));
                 OnPropertyChanged(nameof(AttachmentIcon));
             }

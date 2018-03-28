@@ -10,9 +10,9 @@ namespace ListenManager.Managers
         private string _selectedAccent;
         private string _selectedTheme;
 
-        private SecureString passwort;
-        private SecureString user;
-        private string smtpServer;
+        private SecureString _passwort;
+        private string _user;
+        private string _smtpServer;
 
         public List<string> AccentList { get; } = new List<string>()
         {
@@ -51,16 +51,41 @@ namespace ListenManager.Managers
             }
         }
 
-        private void SwitchStyle()
+        public string SmtpAdress
         {
-            ThemeManager.ChangeAppStyle(Application.Current, 
-                ThemeManager.GetAccent(SelectedAccent),
-                ThemeManager.GetAppTheme(SelectedTheme));
+            get => _smtpServer;
+            set
+            {
+                _smtpServer = value;
+                OnPropertyChanged(nameof(SmtpAdress));
+            }
         }
 
-        public void loadCredentials()
+        public string Username
         {
-            
+            get => _user;
+            set
+            {
+                _user = value;
+                OnPropertyChanged(nameof(Username));
+            }
+        }
+
+        public SecureString Password
+        {
+            get => _passwort;
+            set
+            {
+                _passwort = value;
+                OnPropertyChanged(nameof(Password));
+            }
+        }
+
+        private void SwitchStyle()
+        {
+            ThemeManager.ChangeAppStyle(Application.Current,
+                ThemeManager.GetAccent(SelectedAccent),
+                ThemeManager.GetAppTheme(SelectedTheme));
         }
     }
 }
