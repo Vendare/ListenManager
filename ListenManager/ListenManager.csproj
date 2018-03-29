@@ -124,6 +124,7 @@
     </ApplicationDefinition>
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="src\Config\ConfigHandler.cs" />
+    <Compile Include="src\Database\DataObjects\AccentToggles.cs" />
     <Compile Include="src\Database\DataObjects\BaseDataObject.cs" />
     <Compile Include="src\Database\DataObjects\DisplayOrt.cs" />
     <Compile Include="src\Database\DataObjects\MailAttachment.cs" />
@@ -163,6 +164,7 @@
     <Compile Include="src\Enums\ConfigType.cs" />
     <Compile Include="src\Enums\ListType.cs" />
     <Compile Include="src\Interfaces\IClosable.cs" />
+    <Compile Include="src\Interfaces\IHavePassword.cs" />
     <Compile Include="src\Interfaces\IWindowService.cs" />
     <Compile Include="src\Mail\MailClient.cs" />
     <Compile Include="src\Managers\BaseManager.cs" />
@@ -193,6 +195,9 @@
     </Compile>
     <Compile Include="src\Views\UserControls\Overview.xaml.cs">
       <DependentUpon>Overview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="src\Views\UserControls\ConfigView.xaml.cs">
+      <DependentUpon>ConfigView.xaml</DependentUpon>
     </Compile>
     <Page Include="Resources\Icons.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -232,6 +237,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="src\Views\UserControls\Overview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="src\Views\UserControls\ConfigView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

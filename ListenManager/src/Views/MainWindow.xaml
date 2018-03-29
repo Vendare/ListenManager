@@ -16,9 +16,16 @@
         >
     <cs:MetroWindow.RightWindowCommands>
         <cs:WindowCommands>
-            <Button Content="Einstellungen" />
+            <ToggleButton IsChecked="{Binding ElementName=Settings, Path=IsOpen}" Content="Einstellungen" />
         </cs:WindowCommands>
     </cs:MetroWindow.RightWindowCommands>
+    <cs:MetroWindow.Flyouts>
+        <cs:FlyoutsControl>
+            <cs:Flyout Margin="50,0,0,0" Name="Settings" Header="Einstellungen" Position="Right" Theme="Adapt" >
+                <uc:SettingsControl />
+            </cs:Flyout>
+        </cs:FlyoutsControl>
+    </cs:MetroWindow.Flyouts>
     <cs:MetroAnimatedTabControl >
         <cs:MetroTabItem Header="Mitgliederübersicht">
             <ad:DockingManager>
