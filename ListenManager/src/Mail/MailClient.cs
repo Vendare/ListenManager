@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Mail;
-using System.Security;
+using System.Runtime.Serialization.Formatters;
+using ListenManager.Config;
 using ListenManager.Database.DataObjects;
 
 namespace ListenManager.Mail
@@ -12,18 +14,16 @@ namespace ListenManager.Mail
         private static MailClient _instance;
 
         public static MailClient Instance => _instance ?? (_instance = new MailClient());
+        private readonly ConfigHandler _configHandler;
 
         public List<VereinsMitglied> MailToListe { get; set; }
         public string Betreff { get; set; }
         public string Message { get; set; }
         public List<FileInfo> Anhaenge { get; set; }
-        public string MailServerAdress { get; set; }
-        public string User { get; set; }
-        public SecureString Passwort { get; set; }
 
         private MailClient()
         {
-
+            _configHandler = ConfigHandler.Instance;
         }
 
         private MailMessage CreateMail()
@@ -50,19 +50,26 @@ namespace ListenManager.Mail
         public async void SendMessageAsync()
         {
             var message = CreateMail();
+            var pw = _configHandler.SmtpPassword;
+
+            var tmp = _configHandler.SmtpAdress.Split(':');
+            var adress = tmp[0];
+            var port = tmp.Length > 1 ? Convert.ToInt32(tmp[1]) : 25; //25 is the base smtp port
 
             var client = new SmtpClient
             {
-                Host = MailServerAdress,
+                Host = adress,
+                Port = port,
                 EnableSsl = true,
                 Credentials = new NetworkCredential()
                 {
-                    UserName = User,
-                    SecurePassword = Passwort
+                    UserName = _configHandler.SmtpUser,
+                    SecurePassword = pw
                 }
             };
 
             await client.SendMailAsync(message);
+            pw.Dispose();
         }
     }
 }

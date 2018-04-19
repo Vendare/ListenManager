@@ -4,6 +4,7 @@
     {
         private bool _isChecked;
         private string _name;
+        private string _displayName;
 
         public bool IsChecked
         {
@@ -22,6 +23,16 @@
             {
                 _name = value;
                 OnPropertyChanged(nameof(Name));
+            }
+        }
+
+        public string DisplayName
+        {
+            get => _displayName;
+            set
+            {
+                _displayName = value;
+                OnPropertyChanged(nameof(DisplayName));
             }
         }
 

@@ -240,7 +240,10 @@ namespace ListenManager.Database.Handlers
 
         public SortedDictionary<ConfigType, string> GetConfig()
         {
+            var exclude = Enum.GetName(typeof(ConfigType), ConfigType.SmtpPasswort);
+
             var data = (from c in _context.Config
+                        where !c.Key.Equals(exclude)
                         select c).ToList();
 
             var rueck = new SortedDictionary<ConfigType, string>();
@@ -252,6 +255,31 @@ namespace ListenManager.Database.Handlers
             }
 
             return rueck;
+        }
+
+        public void SaveConfigParameter(ConfigType key, string value)
+        {
+            var keyName = Enum.GetName(typeof(ConfigType), key);
+
+            var data = (from c in _context.Config
+                where c.Key.Equals(keyName)
+                select c).FirstOrDefault();
+
+            if (data == null) return;
+
+            data.VALUE = value;
+            _context.SaveChanges();
+        }
+
+        public string GetSmtpPassword()
+        {
+            var key = Enum.GetName(typeof(ConfigType), ConfigType.SmtpPasswort);
+
+            var data = (from c in _context.Config
+                where c.Key.Equals(key)
+                select c).FirstOrDefault();
+
+            return data?.VALUE;
         }
     }
 }

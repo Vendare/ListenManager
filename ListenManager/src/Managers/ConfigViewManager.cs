@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Security;
 using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
@@ -12,64 +11,66 @@ namespace ListenManager.Managers
 {
     public class ConfigViewManager : BaseManager
     {
-        private SecureString _passwort;
+        private readonly ConfigHandler _config;
+
         private string _user;
         private string _smtpServer;
 
         private ICommand _updateAccentsCommand;
         private ICommand _updateThemesCommand;
+        private ICommand _saveCommand;
 
         public ConfigViewManager()
         {
-            var config = ConfigHandler.Instance;
+            _config = ConfigHandler.Instance;
 
             SelectedAccent = (from at in AccentList
-                where at.Name.Equals(config.Accent)
+                where at.Name.Equals(_config.Accent)
                 select at).First();
             SelectedAccent.IsChecked = true;
 
             SelectedTheme = (from tt in ThemeList
-                where tt.Name.Equals(config.Theme)
+                where tt.Name.Equals(_config.Theme)
                 select tt).First();
             SelectedTheme.IsChecked = true;
 
             SwitchStyle();
 
-            Username = config.SmtpUser;
-            SmtpAdress = config.SmtpAdress;
+            Username = _config.SmtpUser;
+            SmtpAdress = _config.SmtpAdress;
         }
 
         public List<AccentToggles> AccentList { get; } = new List<AccentToggles>()
         {
-            new AccentToggles() { IsChecked = false, Name = "Red" },
-            new AccentToggles() { IsChecked = false, Name = "Green" },
-            new AccentToggles() { IsChecked = false, Name = "Blue" },
-            new AccentToggles() { IsChecked = false, Name = "Purple" },
-            new AccentToggles() { IsChecked = false, Name = "Orange" },
-            new AccentToggles() { IsChecked = false, Name = "Lime" },
-            new AccentToggles() { IsChecked = false, Name = "Emerald" },
-            new AccentToggles() { IsChecked = false, Name = "Teal" },
-            new AccentToggles() { IsChecked = false, Name = "Cyan" },
-            new AccentToggles() { IsChecked = false, Name = "Cobalt" },
-            new AccentToggles() { IsChecked = false, Name = "Indigo" },
-            new AccentToggles() { IsChecked = false, Name = "Violet" },
-            new AccentToggles() { IsChecked = false, Name = "Pink" },
-            new AccentToggles() { IsChecked = false, Name = "Magenta" },
-            new AccentToggles() { IsChecked = false, Name = "Crimson" },
-            new AccentToggles() { IsChecked = false, Name = "Amber" },
-            new AccentToggles() { IsChecked = false, Name = "Yellow" },
-            new AccentToggles() { IsChecked = false, Name = "Brown" },
-            new AccentToggles() { IsChecked = false, Name = "Olive" },
-            new AccentToggles() { IsChecked = false, Name = "Steel" },
-            new AccentToggles() { IsChecked = false, Name = "Mauve" },
-            new AccentToggles() { IsChecked = false, Name = "Taupe" },
-            new AccentToggles() { IsChecked = false, Name = "Sienna"}
+            new AccentToggles() { IsChecked = false, Name = "Red", DisplayName= "Rot" },
+            new AccentToggles() { IsChecked = false, Name = "Green", DisplayName = "Green" },
+            new AccentToggles() { IsChecked = false, Name = "Blue", DisplayName = "Blau" },
+            new AccentToggles() { IsChecked = false, Name = "Purple", DisplayName = "Purpur" },
+            new AccentToggles() { IsChecked = false, Name = "Orange", DisplayName = "Orange" },
+            new AccentToggles() { IsChecked = false, Name = "Lime", DisplayName = "Lindgrün" },
+            new AccentToggles() { IsChecked = false, Name = "Emerald", DisplayName = "Smaragdgrün" },
+            new AccentToggles() { IsChecked = false, Name = "Teal", DisplayName = "Türkis" },
+            new AccentToggles() { IsChecked = false, Name = "Cyan", DisplayName = "Cyanblau" },
+            new AccentToggles() { IsChecked = false, Name = "Cobalt", DisplayName = "Kobaltblau" },
+            new AccentToggles() { IsChecked = false, Name = "Indigo", DisplayName = "Indigoblau" },
+            new AccentToggles() { IsChecked = false, Name = "Violet", DisplayName = "Violett" },
+            new AccentToggles() { IsChecked = false, Name = "Pink", DisplayName = "Rosa" },
+            new AccentToggles() { IsChecked = false, Name = "Magenta", DisplayName = "Magenta" },
+            new AccentToggles() { IsChecked = false, Name = "Crimson", DisplayName = "Karminrot" },
+            new AccentToggles() { IsChecked = false, Name = "Amber", DisplayName = "Bernsteingelb" },
+            new AccentToggles() { IsChecked = false, Name = "Yellow", DisplayName = "Gelb" },
+            new AccentToggles() { IsChecked = false, Name = "Brown", DisplayName = "Braun"},
+            new AccentToggles() { IsChecked = false, Name = "Olive", DisplayName = "Olivegrün"},
+            new AccentToggles() { IsChecked = false, Name = "Steel", DisplayName = "Stahlblau"},
+            new AccentToggles() { IsChecked = false, Name = "Mauve", DisplayName = "Malve" },
+            new AccentToggles() { IsChecked = false, Name = "Taupe", DisplayName = "Taupe"},
+            new AccentToggles() { IsChecked = false, Name = "Sienna", DisplayName = "Ocker"}
         };
 
         public List<AccentToggles> ThemeList { get; } = new List<AccentToggles>()
         {
-            new AccentToggles() {  IsChecked = false, Name = "BaseLight" },
-            new AccentToggles() {  IsChecked = false, Name = "BaseDark" }
+            new AccentToggles() {  IsChecked = false, Name = "BaseLight", DisplayName = "Heller Hintergrund" },
+            new AccentToggles() {  IsChecked = false, Name = "BaseDark", DisplayName = "Dunkler Hintergrund" }
         };
 
         public AccentToggles SelectedAccent { get; set; }
@@ -96,21 +97,13 @@ namespace ListenManager.Managers
             }
         }
 
-        public SecureString Password
-        {
-            get => _passwort;
-            set
-            {
-                _passwort = value;
-                OnPropertyChanged(nameof(Password));
-            }
-        }
-
         public ICommand UpdateAccentsCommand =>
             _updateAccentsCommand ?? (_updateAccentsCommand = new RelayCommand(UpdateAccents));
 
         public ICommand UpdateThemmesCommand =>
             _updateThemesCommand ?? (_updateThemesCommand = new RelayCommand(UpdateThemes));
+
+        public ICommand SaveCommand => _saveCommand ?? (_saveCommand = new RelayCommand(SaveSettings));
 
         private void UpdateAccents()
         {
@@ -121,11 +114,10 @@ namespace ListenManager.Managers
                     accent.IsChecked = false;
                 }
 
-                if (accent.IsChecked && !accent.Equals(SelectedAccent))
-                {
-                    accent.IsChecked = true;
-                    SelectedAccent = accent;
-                }
+                if (!accent.IsChecked || accent.Equals(SelectedAccent)) continue;
+
+                accent.IsChecked = true;
+                SelectedAccent = accent;
             }
             SwitchStyle();
         }
@@ -138,11 +130,11 @@ namespace ListenManager.Managers
                 {
                     theme.IsChecked = false;
                 }
-                if (theme.IsChecked && !theme.Equals(SelectedAccent))
-                {
-                    theme.IsChecked = true;
-                    SelectedTheme = theme;
-                }
+
+                if (!theme.IsChecked || theme.Equals(SelectedAccent)) continue;
+
+                theme.IsChecked = true;
+                SelectedTheme = theme;
             }
             SwitchStyle();
         }
@@ -152,6 +144,12 @@ namespace ListenManager.Managers
             ThemeManager.ChangeAppStyle(Application.Current,
                 ThemeManager.GetAccent(SelectedAccent.Name),
                 ThemeManager.GetAppTheme(SelectedTheme.Name));
+        }
+
+        private void SaveSettings()
+        {
+            _config.SmtpAdress = SmtpAdress;
+            _config.SmtpUser = Username;
         }
     }
 }

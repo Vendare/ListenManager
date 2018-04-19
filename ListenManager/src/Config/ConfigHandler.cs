@@ -11,32 +11,82 @@ namespace ListenManager.Config
     public class ConfigHandler
     {
         private static ConfigHandler _instance;
+        private static VerzeichnisHandler _handler;
+
+        private string _smtpAdress;
+        private string _smtpUser;
+
+        private string _accent;
+        private string _theme;
 
         public static ConfigHandler Instance => _instance ?? (_instance = new ConfigHandler());
 
         private ConfigHandler()
         {
-            var sec = new SecureString();
-            sec.AppendChar('b');
-            sec.AppendChar('l');
-            sec.AppendChar('a');
+            _handler = VerzeichnisHandler.Instance;
 
-            var encrypt = EncryptData(sec);
-            var decrypt = DecryptData(encrypt);
-
-            var configData = VerzeichnisHandler.Instance.GetConfig();
+            var configData = _handler.GetConfig();
             SmtpAdress = configData[ConfigType.SmtpAdress];
             SmtpUser = configData[ConfigType.SmtpUser];
-            SmtpPassword = DecryptData(configData[ConfigType.SmtpPasswort]);
             Accent = configData[ConfigType.Accent];
             Theme = configData[ConfigType.Theme];
         }
 
-        public string SmtpAdress { get; set; }
-        public string SmtpUser { get; set; }
-        public SecureString SmtpPassword { get; set; }
-        public string Accent { get; set; }
-        public string Theme { get; set; }
+        public string SmtpAdress
+        {
+            get => _smtpAdress;
+            set
+            {
+                _smtpAdress = value;
+                _handler.SaveConfigParameter(ConfigType.SmtpAdress, _smtpAdress);
+            }
+        }
+
+        public string SmtpUser
+        {
+            get => _smtpUser;
+            set
+            {
+                _smtpUser = value;
+                _handler.SaveConfigParameter(ConfigType.SmtpUser, _smtpUser);
+            }
+        }
+
+        public SecureString SmtpPassword
+        {
+            get
+            {
+                var raw = _handler.GetSmtpPassword();
+                return DecryptData(raw);
+            }
+
+            set
+            {
+                var toSave = EncryptData(value);
+                _handler.SaveConfigParameter(ConfigType.SmtpPasswort, toSave);
+            }
+        }
+
+        public string Accent
+        {
+            get => _accent;
+            set
+            {
+                if(value == null) return;
+                _accent = value;
+                _handler.SaveConfigParameter(ConfigType.Accent, _accent);
+            }
+        }
+        public string Theme
+        {
+            get => _theme;
+            set
+            {
+                if(value == null) return;
+                _theme = value;
+                _handler.SaveConfigParameter(ConfigType.Theme, _theme);
+            }
+        }
 
         private static string EncryptData(SecureString secStr)
         {

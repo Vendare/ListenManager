@@ -241,9 +241,6 @@ namespace ListenManager.Managers
             client.Betreff = Subject;
             client.MailToListe = _mailListe;
             client.Message = Body;
-            client.MailServerAdress = _config.SmtpAdress;
-            client.User = _config.SmtpUser;
-            client.Passwort = _config.SmtpPassword;
 
             client.SendMessageAsync();
         }
