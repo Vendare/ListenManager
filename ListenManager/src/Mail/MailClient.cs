@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Mail;
-using System.Runtime.Serialization.Formatters;
 using ListenManager.Config;
 using ListenManager.Database.DataObjects;
 
@@ -34,6 +33,8 @@ namespace ListenManager.Mail
             {
                 mail.To.Add(member.Email);
             }
+
+            mail.From = new MailAddress(_configHandler.SmtpUser, "Kanninchenzucht Verein H5"); 
 
             mail.Subject = Betreff;
 

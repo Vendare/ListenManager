@@ -29,7 +29,8 @@
         </ResourceDictionary>
         <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseDark.xaml">
         </ResourceDictionary>
-      </ResourceDictionary.MergedDictionaries>
+        <!-- ViewModel for the Main Window -->
+        </ResourceDictionary.MergedDictionaries>
             <managers:MainWindowManager x:Key="MainWindowManager" />
         </ResourceDictionary>
   </Application.Resources>
