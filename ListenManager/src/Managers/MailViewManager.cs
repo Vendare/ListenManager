@@ -242,7 +242,7 @@ namespace ListenManager.Managers
             client.MailToListe = _mailListe;
             client.Message = Body;
 
-            client.SendMessageAsync();
+            client.SendMessage();
         }
     }
 }
