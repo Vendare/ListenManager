@@ -1,4 +1,5 @@
-﻿using MahApps.Metro.Controls;
+﻿using ListenManager.Managers;
+using MahApps.Metro.Controls;
 
 namespace ListenManager.Views
 {

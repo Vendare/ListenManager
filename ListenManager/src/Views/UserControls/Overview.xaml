@@ -8,23 +8,23 @@
       d:DesignHeight="300" 
       d:DesignWidth="300"
       >
-    <UserControl.Resources>
-        <om:OverviewManager x:Key="OverviewManager" />
-    </UserControl.Resources>
+    <UserControl.DataContext>
+        <om:OverviewManager />
+    </UserControl.DataContext>
     <Grid Margin="0,0,0,0">
         <DataGrid Margin="0,0,0,0" 
                   AutoGenerateColumns="False" 
                   CanUserAddRows="False" 
                   CanUserDeleteRows="False" 
                   IsReadOnly="True" 
-                  ItemsSource="{Binding Source={StaticResource OverviewManager}, Path=Mitglieder}"
+                  ItemsSource="{Binding Path=Mitglieder}"
                   SelectionMode="Single"
-                  SelectedItem="{Binding Source={StaticResource OverviewManager}, Path=SelectedVereinsMitglied}"
+                  SelectedItem="{Binding Path=SelectedVereinsMitglied}"
                   GridLinesVisibility="All"
                   VerticalGridLinesBrush="White"
                   >
             <DataGrid.InputBindings>
-                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding Source={StaticResource OverviewManager}, Path=UpdateCommand}"/>
+                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding Path=UpdateCommand}"/>
             </DataGrid.InputBindings>
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Mitgliedsnr}" Header="Mitgliedsnummer" />
@@ -36,8 +36,8 @@
                 <DataGridTextColumn Binding="{Binding Ort}" Header="Ort" />
                 <DataGridTextColumn Binding="{Binding Bundesland}" Header="Bundesland" />
                 <DataGridTextColumn Binding="{Binding Email}" Header="E-Mail" />
-                <DataGridTextColumn Binding="{Binding Telefon}" Header="E-Mail" />
-                <DataGridTextColumn Binding="{Binding Mobil}" Header="E-Mail" />
+                <DataGridTextColumn Binding="{Binding Telefon}" Header="Telefon" />
+                <DataGridTextColumn Binding="{Binding Mobil}" Header="Mobil" />
                 <DataGridTextColumn Binding="{Binding Eintrittsdatum, StringFormat={}{0:dd.MM.yyyy}}" Header="Eintrittsdatum" />
                 <DataGridTextColumn Binding="{Binding Geburtsdatum, StringFormat={}{0:dd.MM.yyyy}}" Header="Geburtsdatum" />
                 <DataGridTextColumn Binding="{Binding IBAN}" Header="IBAN" />
@@ -50,7 +50,7 @@
                 Width="50" 
                 Background="{DynamicResource AccentColorBrush}"
                 Style="{DynamicResource MetroCircleButtonStyle}"
-                Command="{Binding Source={StaticResource OverviewManager}, Path=AddCommand}"
+                Command="{Binding Path=AddCommand}"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom" >
             <Rectangle Width="20" Height="20">

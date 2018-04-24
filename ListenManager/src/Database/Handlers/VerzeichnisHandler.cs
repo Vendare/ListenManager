@@ -105,18 +105,24 @@ namespace ListenManager.Database.Handlers
 
         public ObservableCollection<VereinsMitglied> GetJugend()
         {
-            var tmp = (from j in _context.Mitglieder
-                where j.Geburtsdatum >= DateTime.Today.AddYears(-18)
-                          select j).ToList();
+            var tmp = (from bm in _context.Mitglieder
+                select bm).AsEnumerable();
+
+            tmp = (from bm in tmp
+                where bm.Geburtsdatum > DateTime.Today.AddYears(-18)
+                   select bm).ToList();
 
             return CreateObservableCollection(tmp);
         }
 
         public ObservableCollection<VereinsMitglied> GetErwachsene()
         {
-            var tmp = (from j in _context.Mitglieder
-                where j.Geburtsdatum < DateTime.Today.AddYears(-18)
-                select j).ToList();
+            var tmp = (from bm in _context.Mitglieder
+                select bm).AsEnumerable();
+
+            tmp = (from j in tmp
+                   where j.Geburtsdatum <= DateTime.Today.AddYears(-18)
+                   select j).ToList();
 
             return CreateObservableCollection(tmp);
         }

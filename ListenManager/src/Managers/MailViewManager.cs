@@ -6,7 +6,6 @@ using System.IO;
 using System.Linq;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
-using ListenManager.Config;
 using ListenManager.Database.DataObjects;
 using ListenManager.Database.Handlers;
 using ListenManager.Enums;
@@ -18,7 +17,6 @@ namespace ListenManager.Managers
     public class MailViewManager : BaseManager
     {
         private readonly VerzeichnisHandler _handler;
-        private readonly ConfigHandler _config;
 
         private ObservableCollection<VereinsMitglied> _mitgliederOhneEmail;
         private ObservableCollection<MitgliedsListe> _listen;
@@ -40,7 +38,6 @@ namespace ListenManager.Managers
         {
             Attachments = new ObservableCollection<MailAttachment>();
             _handler = VerzeichnisHandler.Instance;
-            _config = ConfigHandler.Instance;
             var alle = new MitgliedsListe() { Name = "Alle", SourceVerzeichnis = null, Type = ListType.Alle };
             var erwa = new MitgliedsListe() { Name = "Erwachsene", SourceVerzeichnis = null, Type = ListType.Erwachsene };
             var jugd = new MitgliedsListe() { Name = "Jugend", SourceVerzeichnis = null, Type = ListType.Jugend };

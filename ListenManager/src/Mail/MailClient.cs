@@ -54,6 +54,7 @@ namespace ListenManager.Mail
 
         public async void SendMessage()
         {
+            var dialog = DialogCoordinator.Instance;
             var message = CreateMail();
             var pw = _configHandler.SmtpPassword;
 
@@ -75,30 +76,27 @@ namespace ListenManager.Mail
                     SecurePassword = pw
                 }
             })
-
             {
                 try
                 {
                     client.Send(message);
+                    await dialog.ShowMessageAsync(this, "Erfolg", "E-Mail erfolgreich übertragen.");
                 }
                 catch (SmtpException smtpException)
                 {
-                    var dialog = DialogCoordinator.Instance;
+                    
                     await dialog.ShowMessageAsync(this, "Fehler",
                         "Es ist ein Fehler beim übertragen der E-Mail aufgetreten.\n\n Original Fehlermeldung :\n" +
                         smtpException.Message);
                 }
                 catch (Exception e)
                 {
-                    var dialog = DialogCoordinator.Instance;
                     await dialog.ShowMessageAsync(this, "Fehler",
                         "Das senden.\n\n Original Fehlermeldung :\n" +
                         e.Message);
                 }
                 
             }
-
-
             pw.Dispose();
         }
     }

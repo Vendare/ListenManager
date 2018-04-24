@@ -6,14 +6,17 @@
         xmlns:ad="http://schemas.xceed.com/wpf/xaml/avalondock"
         xmlns:cs="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:uc="clr-namespace:ListenManager.Views.UserControls"
+        xmlns:ma="clr-namespace:ListenManager.Managers"
         mc:Ignorable="d"
         Title="Mitgliederverzeichnis" 
         Height="600" 
         Width="900"
         WindowStartupLocation="CenterScreen"
-        BorderBrush="{Binding Source={StaticResource MainWindowManager}, Path=CurrentBorderBrush}"
-        GlowBrush="{DynamicResource AccentColorBrush}"
-        >
+        BorderBrush="{Binding Path=CurrentBorderBrush}"
+        GlowBrush="{DynamicResource AccentColorBrush}">
+    <cs:MetroWindow.DataContext>
+        <ma:MainWindowManager/>
+    </cs:MetroWindow.DataContext>
     <cs:MetroWindow.RightWindowCommands>
         <cs:WindowCommands>
             <ToggleButton IsChecked="{Binding ElementName=Settings, Path=IsOpen}" Content="Einstellungen" />
@@ -49,7 +52,7 @@
                                       Margin="10,240,10,10"
                                       BorderBrush="White">
                                         <ListBox SelectionMode="Single"
-                                         ItemsSource="{Binding Source={StaticResource MainWindowManager}, Path=BirthdayMitglieder}">
+                                         ItemsSource="{Binding Path=BirthdayMitglieder}">
                                             <ListBox.ItemTemplate>
                                                 <DataTemplate>
                                                     <TextBlock>
@@ -77,6 +80,9 @@
         </cs:MetroTabItem>
         <cs:MetroTabItem Header="E-Mail senden">
             <uc:MailView/>
+        </cs:MetroTabItem>
+        <cs:MetroTabItem Header="Import / Export">
+            <uc:ImportExportView/>
         </cs:MetroTabItem>
     </cs:MetroAnimatedTabControl>
 </cs:MetroWindow>

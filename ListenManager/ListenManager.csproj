@@ -51,6 +51,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="EPPlus, Version=4.5.1.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.4.5.1\lib\net40\EPPlus.dll</HintPath>
+    </Reference>
     <Reference Include="GalaSoft.MvvmLight, Version=5.4.1.0, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.4.1\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
     </Reference>
@@ -68,6 +71,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.SQLite, Version=1.0.108.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.SQLite.Core.1.0.108.0\lib\net46\System.Data.SQLite.dll</HintPath>
@@ -167,11 +171,14 @@
     <Compile Include="src\Interfaces\IClosable.cs" />
     <Compile Include="src\Interfaces\IHavePassword.cs" />
     <Compile Include="src\Interfaces\IWindowService.cs" />
+    <Compile Include="src\IO\ExcelReader.cs" />
+    <Compile Include="src\IO\ExcelWriter.cs" />
     <Compile Include="src\Mail\MailClient.cs" />
     <Compile Include="src\Managers\BaseManager.cs" />
     <Compile Include="src\Managers\ConfigViewManager.cs" />
     <Compile Include="src\Managers\EditListManager.cs" />
     <Compile Include="src\Managers\EditMemberManager.cs" />
+    <Compile Include="src\Managers\ImportExportManager.cs" />
     <Compile Include="src\Managers\ListViewManager.cs" />
     <Compile Include="src\Managers\MailViewManager.cs" />
     <Compile Include="src\Managers\MainWindowManager.cs" />
@@ -187,6 +194,9 @@
     </Compile>
     <Compile Include="src\Views\Pages\EditMemberPage.xaml.cs">
       <DependentUpon>EditMemberPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="src\Views\UserControls\ImportExportView.xaml.cs">
+      <DependentUpon>ImportExportView.xaml</DependentUpon>
     </Compile>
     <Compile Include="src\Views\UserControls\ListView.xaml.cs">
       <DependentUpon>ListView.xaml</DependentUpon>
@@ -226,6 +236,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="src\Views\Pages\EditMemberPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="src\Views\UserControls\ImportExportView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
