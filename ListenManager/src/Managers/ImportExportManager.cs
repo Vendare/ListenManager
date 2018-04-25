@@ -22,6 +22,7 @@ namespace ListenManager.Managers
         private int _inputRowCount;
         private int _sheetIndex;
         private string _arbeitsblattName;
+        private string _startPos;
 
         private FileInfo _inputFileInfo;
         private FileInfo _outputFileInfo;
@@ -38,6 +39,9 @@ namespace ListenManager.Managers
         {
             _coordinator = DialogCoordinator.Instance;
             _handler = VerzeichnisHandler.Instance;
+
+            SheetIndex = 1;
+            InputRowCount = 1;
 
             var alle = new MitgliedsListe() { Name = "Alle", SourceVerzeichnis = null, Type = ListType.Alle };
             var erwa = new MitgliedsListe() { Name = "Erwachsene", SourceVerzeichnis = null, Type = ListType.Erwachsene };
@@ -99,6 +103,16 @@ namespace ListenManager.Managers
             {
                 _arbeitsblattName = value;
                 OnPropertyChanged(nameof(ArbeitsblattName));
+            }
+        }
+
+        public string StartPosForImport
+        {
+            get => _startPos;
+            set
+            {
+                _startPos = value;
+                OnPropertyChanged(nameof(StartPosForImport));
             }
         }
 
@@ -202,7 +216,8 @@ namespace ListenManager.Managers
             var reader = new ExcelReader(InputFileInfo)
             {
                 RowCount = InputRowCount,
-                CurrentSheet = SheetIndex - 1
+                CurrentSheet = SheetIndex,
+                StartPos = StartPosForImport
             };
 
             reader.ImportFileAsync(worker);

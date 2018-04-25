@@ -234,7 +234,7 @@
 
                 <TextBox Margin="135,45,310,0" 
                          Height="30"
-                         Text="{Binding Source={StaticResource EditMemberManager}, Path=Member.IBAN}"
+                         Text="{Binding Source={StaticResource EditMemberManager}, Path=Member.Iban}"
                          VerticalAlignment="Top"/>
 
                 <Label Margin="10,80,0,0" 
@@ -246,7 +246,7 @@
 
                 <TextBox Margin="135,80,310,0" 
                          Height="30"
-                         Text="{Binding Source={StaticResource EditMemberManager}, Path=Member.BIC}"
+                         Text="{Binding Source={StaticResource EditMemberManager}, Path=Member.Bic}"
                          VerticalAlignment="Top"/>
             </Grid>
         </GroupBox>

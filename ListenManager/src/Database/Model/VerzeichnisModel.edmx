@@ -17,7 +17,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="integer" Nullable="false" />
+          <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="ID_Verzeichnis" Type="integer" />
           <Property Name="Anrede" Type="bit" />
           <Property Name="Mitgliedsnr" Type="bit" />
@@ -40,7 +40,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="integer" Nullable="false" />
+          <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Mitgliedsnr" Type="integer" />
           <Property Name="Anrede" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="Vorname" Type="nvarchar" MaxLength="2147483647" />
@@ -68,7 +68,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="integer" Nullable="false" />
+          <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="PLZ" Type="integer" />
           <Property Name="Name" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="Bundesland" Type="nvarchar" MaxLength="2147483647" />
@@ -77,7 +77,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="integer" Nullable="false" />
+          <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="nvarchar" MaxLength="2147483647" />
         </EntityType>
         <Association Name="FK_Fieldvisibility_0_0">
@@ -169,7 +169,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ID_Verzeichnis" Type="Int64" />
           <Property Name="Anrede" Type="Boolean" />
           <Property Name="Mitgliedsnr" Type="Boolean" />
@@ -193,7 +193,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Mitgliedsnr" Type="Int64" />
           <Property Name="Anrede" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="Vorname" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
@@ -215,7 +215,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PLZ" Type="Int64" />
           <Property Name="Name" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="Bundesland" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
@@ -225,7 +225,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Fieldvisibilities" Relationship="Self.FK_Fieldvisibility_0_0" FromRole="Verzeichnis" ToRole="Fieldvisibility" />
           <NavigationProperty Name="Mitglieder" Relationship="Self.Mitglied_Verzeichnis" FromRole="Verzeichnis" ToRole="Mitglied" />

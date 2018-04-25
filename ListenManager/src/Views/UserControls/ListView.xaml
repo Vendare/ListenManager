@@ -96,9 +96,9 @@
                                                             Visibility="{Binding  Path=VisibleFields.EintrittsdatumVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
                                         <DataGridTextColumn Binding="{Binding Geburtsdatum, StringFormat={}{0:dd.MM.yyyy}, Mode=OneWay}" Header="Geburtsdatum" 
                                                             Visibility="{Binding  Path=VisibleFields.GeburtsdatumVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
-                                        <DataGridTextColumn Binding="{Binding IBAN}" Header="IBAN" 
+                                        <DataGridTextColumn Binding="{Binding Iban}" Header="IBAN" 
                                                             Visibility="{Binding  Path=VisibleFields.IbanVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
-                                        <DataGridTextColumn Binding="{Binding BIC}" Header="BIC" 
+                                        <DataGridTextColumn Binding="{Binding Bic}" Header="BIC" 
                                                             Visibility="{Binding  Path=VisibleFields.BicVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
                                         <DataGridTextColumn Binding="{Binding Kreditinstitut}" Header="Kreditinstitut"
                                                             Visibility="{Binding  Path=VisibleFields.KreditinstitutVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>

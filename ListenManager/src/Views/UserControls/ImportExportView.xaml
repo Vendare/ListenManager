@@ -14,9 +14,9 @@
         <managers:ImportExportManager x:Name="ImportExportManager"/>
     </UserControl.DataContext>
     <Grid>
-       <Grid.RowDefinitions>
-           <RowDefinition Height="1*" />
-           <RowDefinition Height="1*" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <GroupBox Grid.Row="0"
                   Header="Export">
@@ -77,6 +77,93 @@
                         </ItemsPanelTemplate>
                     </ListBox.ItemsPanel>
                 </ListBox>
+            </Grid>
+        </GroupBox>
+        <GroupBox Grid.Row="1"
+                  Header="Import">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="234*"/>
+                    <ColumnDefinition Width="234*"/>
+                    <ColumnDefinition Width="234*"/>
+                    <ColumnDefinition Width="136*"/>
+                </Grid.ColumnDefinitions>
+                <Label Margin="10,10,0,0"
+                       Height="30"
+                       Width="80"
+                       Content="Dateipfad"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Left" />
+
+                <TextBox Margin="120,10,5,0"
+                         Height="30"
+                         IsReadOnly="True"
+                         Text="{Binding Path=InputFileInfo.FullName, Mode=OneWay}"
+                         VerticalAlignment="Top" 
+                         Grid.ColumnSpan="3"
+                         Grid.Column="0"/>
+
+                <Label Margin="10,50,0,0"
+                       Height="30"
+                       Width="110"
+                       Content="Arbeitsblatt"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Left"
+                       Grid.Column="0"/>
+
+                <xctk:IntegerUpDown Margin="120,50,4,0"
+                                    Height="30"
+                                    Minimum="1"
+                                    Maximum="25"
+                                    Grid.Column="0"
+                                    Background="White"
+                                    Value="{Binding SheetIndex}"
+                                    VerticalAlignment="Top"/>
+
+                <Label Margin="5,50,0,0"
+                       Height="30"
+                       Width="110"
+                       Grid.Column="1"
+                       Content="Anzahl Datensätze"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Left" />
+
+                <xctk:IntegerUpDown Margin="120,50,5,0"
+                                    Height="30"
+                                    Minimum="1"
+                                    Maximum="25"
+                                    Grid.Column="1"
+                                    Background="White"
+                                    Value="{Binding InputRowCount}"
+                                    VerticalAlignment="Top"/>
+
+                <Label Margin="5,50,0,0"
+                       Height="30"
+                       Width="110"
+                       Content="Startadresse"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Left" 
+                       Grid.Column="2" />
+
+                <xctk:WatermarkTextBox Margin="120,50,5,0"
+                                       Height="30"
+                                       VerticalAlignment="Top"
+                                       Watermark="z.B. B2"
+                                       Text="{Binding StartPosForImport}"
+                                       Grid.Column="2"/>
+
+                <Button Margin="5,50,10,0"
+                        Height="30"
+                        Content="Daten importieren"
+                        VerticalAlignment="Top"
+                        Command="{Binding Path=ImportCommand}" 
+                        Grid.Column="3"/>
+
+                <Button Margin="5,10,10,0"
+                        Height="30"
+                        Content="Datei auswählen"
+                        VerticalAlignment="Top"
+                        Command="{Binding Path=SelectInputFileCommand}" Grid.Column="3"/>
             </Grid>
         </GroupBox>
     </Grid>

@@ -180,8 +180,8 @@ namespace ListenManager.Managers
             _originalMitglied.eMail = Member.Email;
             _originalMitglied.Eintrittsdatum = Member.Eintrittsdatum;
             _originalMitglied.Geburtsdatum = Member.Geburtsdatum;
-            _originalMitglied.IBAN = Member.IBAN;
-            _originalMitglied.BIC = Member.BIC;
+            _originalMitglied.IBAN = Member.Iban;
+            _originalMitglied.BIC = Member.Bic;
             _originalMitglied.Kreditinstitut = Member.Kreditinstitut;
 
             _handler.UpdateData();

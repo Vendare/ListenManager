@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
 using ListenManager.Database.DataObjects;
-using ListenManager.Database.Handlers;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 
@@ -77,10 +75,10 @@ namespace ListenManager.IO
                 sheet.Cells[2, 2, 2, data.Columns.Count + 1].Style.Fill.PatternType = ExcelFillStyle.Solid;
                 sheet.Cells[2, 2, 2, data.Columns.Count + 1].Style.Fill.BackgroundColor.SetColor(Color.SteelBlue);
 
-                for (var i = 4; i < data.Rows.Count + 2; i += 2)
+                for (var i = 4; i <= data.Rows.Count + 2; i += 2)
                 {
                     if (worker != null && worker.CancellationPending) return;
-                    worker?.ReportProgress(i - 3 * 100 / data.Rows.Count - 2, "Lege Styles An");
+                    worker?.ReportProgress((i - 3) * 100 / data.Rows.Count, "Lege Styles An");
                     sheet.Cells[i, 2, i, data.Columns.Count + 1].Style.Fill.PatternType = ExcelFillStyle.Solid;
                     sheet.Cells[i, 2, i, data.Columns.Count + 1].Style.Fill.BackgroundColor.SetColor(Color.LightGray);
                 }
@@ -290,13 +288,13 @@ namespace ListenManager.IO
 
                 if (FieldsToExport.IbanVisible)
                 {
-                    row[pos] = mitglied.IBAN;
+                    row[pos] = mitglied.Iban;
                     pos++;
                 }
 
                 if (FieldsToExport.BicVisible)
                 {
-                    row[pos] = mitglied.BIC;
+                    row[pos] = mitglied.Bic;
                     pos++;
                 }
 

@@ -2,7 +2,6 @@
 using System.Windows;
 using System.Windows.Media;
 using GalaSoft.MvvmLight.Messaging;
-using ListenManager.Config;
 using ListenManager.Database.DataObjects;
 using ListenManager.Database.Handlers;
 using ListenManager.Managers.Messages;
@@ -27,7 +26,6 @@ namespace ListenManager.Managers
 
         public MainWindowManager()
         {
-            var conf = ConfigHandler.Instance;
             _handler = VerzeichnisHandler.Instance;
             CurrentBorderBrush = SystemColors.WindowBrush;
             BirthdayMitglieder = _handler.GetMitgliederWithBirthdayForCurrentMonth();

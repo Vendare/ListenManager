@@ -14,6 +14,7 @@ namespace ListenManager.IO
         private readonly ExcelPackage _package;
         public int RowCount { get; set; }
         public int CurrentSheet { get; set; }
+        public string StartPos { get; set; }
         public FileInfo FilePath
         {
             get => _package.File;
@@ -51,29 +52,36 @@ namespace ListenManager.IO
             {
                 using (var sheet = workbook.Worksheets[CurrentSheet])
                 {
-                    for (var i = 0; i < RowCount; i++)
+                    if (StartPos == null)
+                    {
+                        StartPos = "A1";
+                    }
+
+                    var start = sheet.Cells[StartPos].Start;
+                    
+                    for (int i = start.Row, count = 0; count < RowCount; i++, count++)
                     {
                         if (worker != null && worker.CancellationPending)
                         {
                             break;
                         }
-                        var ortId = handler.GetOrtForPlz(sheet.Cells[i + 2, 6].GetValue<long>());
+                        var ortId = handler.GetOrtForPlz(sheet.Cells[i, start.Column + 5].GetValue<long>());
                         var m = new Mitglied
                         {
-                            Mitgliedsnr = sheet.Cells[i + 2, 1].GetValue<long>(),
-                            Anrede = sheet.Cells[i + 2, 2].GetValue<string>(),
-                            Vorname = sheet.Cells[i + 2, 3].GetValue<string>(),
-                            Name = sheet.Cells[i + 2, 4].GetValue<string>(),
-                            Straße = sheet.Cells[i + 2, 5].GetValue<string>(),
+                            Mitgliedsnr = sheet.Cells[i, start.Column].GetValue<long>(),
+                            Anrede = sheet.Cells[i, start.Column + 1].GetValue<string>(),
+                            Vorname = sheet.Cells[i, start.Column + 2].GetValue<string>(),
+                            Name = sheet.Cells[i, start.Column + 3].GetValue<string>(),
+                            Straße = sheet.Cells[i, start.Column + 4].GetValue<string>(),
                             ID_Ort = ortId.First().SourceOrt.ID,
-                            eMail = sheet.Cells[i + 2, 9].GetValue<string>(),
-                            Telefon = sheet.Cells[i + 2, 10].GetValue<string>(),
-                            Mobil = sheet.Cells[i + 2, 11].GetValue<string>(),
-                            Eintrittsdatum = sheet.Cells[i + 2, 12].GetValue<DateTime>(),
-                            Geburtsdatum = sheet.Cells[i + 2, 13].GetValue<DateTime>(),
-                            IBAN = sheet.Cells[i + 2, 14].GetValue<string>(),
-                            BIC = sheet.Cells[i + 2, 15].GetValue<string>(),
-                            Kreditinstitut = sheet.Cells[i + 2, 16].GetValue<string>()
+                            eMail = sheet.Cells[i, start.Column + 8].GetValue<string>(),
+                            Telefon = sheet.Cells[i, start.Column + 9].GetValue<string>(),
+                            Mobil = sheet.Cells[i, start.Column + 10].GetValue<string>(),
+                            Eintrittsdatum = sheet.Cells[i, start.Column + 11].GetValue<DateTime>(),
+                            Geburtsdatum = sheet.Cells[i, start.Column + 12].GetValue<DateTime>(),
+                            IBAN = sheet.Cells[i, start.Column + 13].GetValue<string>(),
+                            BIC = sheet.Cells[i, start.Column + 14].GetValue<string>(),
+                            Kreditinstitut = sheet.Cells[i, start.Column + 15].GetValue<string>()
                         };
                         handler.AddMitglied(m);
                         if (worker == null || !worker.WorkerReportsProgress) continue;
@@ -84,7 +92,7 @@ namespace ListenManager.IO
                         }
                         else
                         {
-                            worker.ReportProgress(i * 100 / RowCount);
+                            worker.ReportProgress(count * 100 / RowCount);
                         }
                     }
                 }

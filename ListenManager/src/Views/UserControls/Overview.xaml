@@ -40,8 +40,8 @@
                 <DataGridTextColumn Binding="{Binding Mobil}" Header="Mobil" />
                 <DataGridTextColumn Binding="{Binding Eintrittsdatum, StringFormat={}{0:dd.MM.yyyy}}" Header="Eintrittsdatum" />
                 <DataGridTextColumn Binding="{Binding Geburtsdatum, StringFormat={}{0:dd.MM.yyyy}}" Header="Geburtsdatum" />
-                <DataGridTextColumn Binding="{Binding IBAN}" Header="IBAN" />
-                <DataGridTextColumn Binding="{Binding BIC}" Header="BIC" />
+                <DataGridTextColumn Binding="{Binding Iban}" Header="IBAN" />
+                <DataGridTextColumn Binding="{Binding Bic}" Header="BIC" />
                 <DataGridTextColumn Binding="{Binding Kreditinstitut}" Header="Kreditinstitut" />
             </DataGrid.Columns>
         </DataGrid>

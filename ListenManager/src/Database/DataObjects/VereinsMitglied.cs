@@ -23,8 +23,8 @@ namespace ListenManager.Database.DataObjects
                 OnPropertyChanged(nameof(Email));
                 OnPropertyChanged(nameof(Eintrittsdatum));
                 OnPropertyChanged(nameof(Geburtsdatum));
-                OnPropertyChanged(nameof(IBAN));
-                OnPropertyChanged(nameof(BIC));
+                OnPropertyChanged(nameof(Iban));
+                OnPropertyChanged(nameof(Bic));
                 OnPropertyChanged(nameof(Kreditinstitut));
             }
         }
@@ -146,24 +146,24 @@ namespace ListenManager.Database.DataObjects
                 OnPropertyChanged(nameof(Geburtsdatum));
             }
         }
-        public string IBAN
+        public string Iban
         {
             get => SourceMitglied.IBAN ?? "";
             set
             {
                 if (value.Equals(SourceMitglied.IBAN)) return;
                 SourceMitglied.IBAN = value;
-                OnPropertyChanged(nameof(IBAN));
+                OnPropertyChanged(nameof(Iban));
             }
         }
-        public string BIC
+        public string Bic
         {
             get => SourceMitglied.BIC ?? "";
             set
             {
                 if (value.Equals(SourceMitglied.BIC)) return;
                 SourceMitglied.BIC = value;
-                OnPropertyChanged(nameof(BIC));
+                OnPropertyChanged(nameof(Bic));
             }
         }
         public string Kreditinstitut
