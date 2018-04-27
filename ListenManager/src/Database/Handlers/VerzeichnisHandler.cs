@@ -287,5 +287,17 @@ namespace ListenManager.Database.Handlers
 
             return data?.VALUE;
         }
+
+        public void DeleteMitglied(Mitglied sourceMitglied)
+        {
+            _context.Mitglieder.Remove(sourceMitglied);
+            _context.SaveChanges();
+        }
+
+        public void RemoveMitgliedFromList(Verzeichnis verz, Mitglied md)
+        {
+            verz.Mitglieder.Remove(md);
+            _context.SaveChanges();
+        }
     }
 }

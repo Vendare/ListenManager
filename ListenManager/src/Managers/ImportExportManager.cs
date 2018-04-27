@@ -4,10 +4,12 @@ using System.ComponentModel;
 using System.IO;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using ListenManager.Database.DataObjects;
 using ListenManager.Database.Handlers;
 using ListenManager.Enums;
 using ListenManager.IO;
+using ListenManager.Managers.Messages;
 using ListenManager.src.Database.Model;
 using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Win32;
@@ -197,6 +199,7 @@ namespace ListenManager.Managers
             worker.RunWorkerCompleted += async delegate
             {
                 await controller.CloseAsync();
+                Messenger.Default.Send(new ReloadMemberMessage { ReloadAllMembers = true, ReloadBirthdays = true });
             };
 
             worker.ProgressChanged += delegate(object sender, ProgressChangedEventArgs args)

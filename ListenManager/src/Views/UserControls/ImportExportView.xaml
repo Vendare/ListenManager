@@ -164,6 +164,42 @@
                         Content="Datei auswählen"
                         VerticalAlignment="Top"
                         Command="{Binding Path=SelectInputFileCommand}" Grid.Column="3"/>
+
+                <Label Margin="10,90,10,0"
+                       Height="30"
+                       Content="Reihenfolge der Spalten für den Import, Bitte dran halten sonst stehen die Daten in falschen Feldern."
+                       VerticalAlignment="Top"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="4" />
+                <ScrollViewer Margin="10,120,10,10" 
+                              Grid.Column="0"                    
+                              Grid.ColumnSpan="4"
+                              HorizontalScrollBarVisibility="Visible"
+                              VerticalScrollBarVisibility="Disabled">
+                    <DataGrid AutoGenerateColumns="False" 
+                          CanUserAddRows="True" 
+                          CanUserDeleteRows="False" 
+                          IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Mitgliedsnummer" />
+                            <DataGridTextColumn Header="Anrede" />
+                            <DataGridTextColumn Header="Vorname" />
+                            <DataGridTextColumn Header="Nachname" />
+                            <DataGridTextColumn Header="Straße" />
+                            <DataGridTextColumn Header="Postleitzahl" />
+                            <DataGridTextColumn Header="Ort" />
+                            <DataGridTextColumn Header="Bundesland" />
+                            <DataGridTextColumn Header="E-Mail" />
+                            <DataGridTextColumn Header="Telefon" />
+                            <DataGridTextColumn Header="Mobil" />
+                            <DataGridTextColumn Header="Eintrittsdatum" />
+                            <DataGridTextColumn Header="Geburtsdatum" />
+                            <DataGridTextColumn Header="IBAN" />
+                            <DataGridTextColumn Header="BIC" />
+                            <DataGridTextColumn Header="Kreditinstitut" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </ScrollViewer>
             </Grid>
         </GroupBox>
     </Grid>

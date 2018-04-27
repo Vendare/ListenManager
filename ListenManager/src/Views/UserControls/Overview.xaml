@@ -5,8 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:om="clr-namespace:ListenManager.Managers"
       mc:Ignorable="d" 
-      d:DesignHeight="300" 
-      d:DesignWidth="300"
+      d:DesignHeight="500" 
+      d:DesignWidth="800"
       >
     <UserControl.DataContext>
         <om:OverviewManager />
@@ -24,8 +24,16 @@
                   VerticalGridLinesBrush="White"
                   >
             <DataGrid.InputBindings>
-                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding Path=UpdateCommand}"/>
+                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding Path=UpdateMemberCommand}"/>
             </DataGrid.InputBindings>
+            <DataGrid.ContextMenu>
+                <ContextMenu StaysOpen="False">
+                    <MenuItem Header="Ändern" Command="{Binding UpdateMemberCommand}" />
+                    <MenuItem Header="Löschen" Command="{Binding DeleteMemberCommand}" />
+                    <Separator />
+                    <MenuItem Header="Benutzer Hinzufügen" Command="{Binding AddMemberCommand}" />
+                </ContextMenu>
+            </DataGrid.ContextMenu>
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Mitgliedsnr}" Header="Mitgliedsnummer" />
                 <DataGridTextColumn Binding="{Binding Anrede}" Header="Anrede" />
@@ -50,7 +58,7 @@
                 Width="50" 
                 Background="{DynamicResource AccentColorBrush}"
                 Style="{DynamicResource MetroCircleButtonStyle}"
-                Command="{Binding Path=AddCommand}"
+                Command="{Binding Path=AddMemberCommand}"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom" >
             <Rectangle Width="20" Height="20">

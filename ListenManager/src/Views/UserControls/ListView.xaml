@@ -64,7 +64,7 @@
                                           IsReadOnly="True" 
                                           ItemsSource="{Binding  Path=Mitglieder}"
                                           SelectionMode="Single"
-                                          SelectedItem="{Binding  Path=SelectedMitglied}"
+                                          SelectedItem="{Binding  Path=SelectedVereinsMitglied}"
                                           GridLinesVisibility="All">
                                     <DataGrid.InputBindings>
                                         <MouseBinding Gesture="LeftDoubleClick" Command="{Binding  Path=UpdateMemberCommand}"/>
