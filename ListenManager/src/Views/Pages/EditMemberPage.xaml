@@ -11,9 +11,9 @@
       Height="800"
       ResizeMode="NoResize"
       UseNoneWindowStyle="True">
-    <mah:MetroWindow.Resources>
-        <man:EditMemberManager x:Key="EditMemberManager"/>
-    </mah:MetroWindow.Resources>
+    <mah:MetroWindow.DataContext>
+        <man:EditMemberManager />
+    </mah:MetroWindow.DataContext>
     <Grid>
         <Label Margin="15,10,0,0" 
                Content="Mitgliedsnummer" 
@@ -25,7 +25,7 @@
         <TextBox Margin="135,10,10,0" 
                  Height="30"
                  Width="250"
-                 Text="{Binding Source={StaticResource EditMemberManager}, Path=Member.Mitgliedsnr}"
+                 Text="{Binding Member.Mitgliedsnr}"
                  VerticalAlignment="Top"
                  HorizontalAlignment="Left"/>
 
@@ -39,7 +39,7 @@
         <DatePicker Margin="0,10,10,0" 
                     Height="30"
                     Width="170"
-                    SelectedDate="{Binding Source={StaticResource EditMemberManager}, Path=Member.Eintrittsdatum}"
+                    SelectedDate="{Binding Member.Eintrittsdatum}"
                     VerticalAlignment="Top"
                     HorizontalAlignment="Right"/>
 
@@ -59,8 +59,8 @@
 
                 <ComboBox Margin="135,10,310,0" 
                           Height="30"
-                          ItemsSource="{Binding Source={StaticResource EditMemberManager}, Path=Anreden}"
-                          SelectedItem="{Binding Source={StaticResource EditMemberManager}, Path=Member.Anrede}"
+                          ItemsSource="{Binding Anreden}"
+                          SelectedItem="{Binding Member.Anrede}"
                           VerticalAlignment="Top"/>
 
                 <Label Margin="10,45,0,0" 
@@ -72,7 +72,7 @@
 
                 <TextBox Margin="135,45,310,0" 
                          Height="30"
-                         Text="{Binding Source={StaticResource EditMemberManager}, Path=Member.Vorname}"
+                         Text="{Binding Member.Vorname}"
                          VerticalAlignment="Top"/>
 
                 <Label Margin="10,80,0,0" 
@@ -84,7 +84,7 @@
 
                 <TextBox Margin="135,80,310,0" 
                          Height="30"
-                         Text="{Binding Source={StaticResource EditMemberManager}, Path=Member.Name}"
+                         Text="{Binding Member.Name}"
                          VerticalAlignment="Top"/>
 
                 <Label Margin="10,115,0,0" 
@@ -96,7 +96,7 @@
 
                 <DatePicker Margin="135,115,310,0" 
                           Height="30"
-                          SelectedDate="{Binding Source={StaticResource EditMemberManager}, Path=Member.Geburtsdatum}"
+                          SelectedDate="{Binding Member.Geburtsdatum}"
                           VerticalAlignment="Top"/>
             </Grid>
         </GroupBox>
@@ -116,7 +116,7 @@
 
                 <TextBox Margin="135,10,310,0" 
                          Height="30"
-                         Text="{Binding Source={StaticResource EditMemberManager}, Path=Member.Straße}"
+                         Text="{Binding Member.Straße}"
                          VerticalAlignment="Top"/>
 
                 <Label Margin="10,45,0,0" 
@@ -128,8 +128,8 @@
 
                 <ComboBox Margin="135,45,310,0" 
                           Height="30"
-                          ItemsSource="{Binding Source={StaticResource EditMemberManager}, Path=Orte}"
-                          SelectedItem="{Binding Source={StaticResource EditMemberManager}, Path=SelectedOrt}"
+                          ItemsSource="{Binding Orte}"
+                          SelectedItem="{Binding SelectedOrt}"
                           DisplayMemberPath="Plz"
                           VerticalAlignment="Top"/>
 
@@ -142,8 +142,8 @@
 
                 <ComboBox Margin="135,80,310,0" 
                           Height="30"
-                          ItemsSource="{Binding Source={StaticResource EditMemberManager}, Path=FilteredOrte}"
-                          SelectedItem="{Binding Source={StaticResource EditMemberManager}, Path=SelectedFilteredOrt}"
+                          ItemsSource="{Binding FilteredOrte}"
+                          SelectedItem="{Binding SelectedFilteredOrt}"
                           
                           DisplayMemberPath="Ort"
                           VerticalAlignment="Top"/>
@@ -157,7 +157,7 @@
 
                 <TextBox Margin="135,115,310,0" 
                          Height="30"
-                         Text="{Binding Source={StaticResource EditMemberManager}, Path=SelectedOrt.Bundesland, Mode=OneWay}"
+                         Text="{Binding SelectedOrt.Bundesland, Mode=OneWay}"
                          IsReadOnly="True"
                          VerticalAlignment="Top"/>
             </Grid>
@@ -178,7 +178,7 @@
 
                 <TextBox Margin="135,10,310,0" 
                          Height="30"
-                         Text="{Binding Source={StaticResource EditMemberManager}, Path=Member.Email}"
+                         Text="{Binding Member.Email}"
                          VerticalAlignment="Top"/>
 
                 <Label Margin="10,45,0,0" 
@@ -190,7 +190,7 @@
 
                 <TextBox Margin="135,45,310,0" 
                          Height="30"
-                         Text="{Binding Source={StaticResource EditMemberManager}, Path=Member.Telefon}"
+                         Text="{Binding Member.Telefon}"
                          VerticalAlignment="Top"/>
 
                 <Label Margin="10,80,0,0" 
@@ -202,7 +202,7 @@
 
                 <TextBox Margin="135,80,310,0" 
                          Height="30"
-                         Text="{Binding Source={StaticResource EditMemberManager}, Path=Member.Mobil}"
+                         Text="{Binding Member.Mobil}"
                          VerticalAlignment="Top"/>
             </Grid>
         </GroupBox>
@@ -222,7 +222,7 @@
 
                 <TextBox Margin="135,10,310,0" 
                          Height="30"
-                         Text="{Binding Source={StaticResource EditMemberManager}, Path=Member.Kreditinstitut}"
+                         Text="{Binding Member.Kreditinstitut}"
                          VerticalAlignment="Top"/>
 
                 <Label Margin="10,45,0,0" 
@@ -234,7 +234,7 @@
 
                 <TextBox Margin="135,45,310,0" 
                          Height="30"
-                         Text="{Binding Source={StaticResource EditMemberManager}, Path=Member.Iban}"
+                         Text="{Binding Member.Iban}"
                          VerticalAlignment="Top"/>
 
                 <Label Margin="10,80,0,0" 
@@ -246,14 +246,14 @@
 
                 <TextBox Margin="135,80,310,0" 
                          Height="30"
-                         Text="{Binding Source={StaticResource EditMemberManager}, Path=Member.Bic}"
+                         Text="{Binding Member.Bic}"
                          VerticalAlignment="Top"/>
             </Grid>
         </GroupBox>
         <Button Margin="0,6,10,10"
                 Content="Speichern"
                 Style="{StaticResource AccentedSquareButtonStyle}"
-                Command="{Binding Source={StaticResource EditMemberManager}, Path=SaveCommand}"
+                Command="{Binding SaveCommand}"
                 CommandParameter="{Binding ElementName=MemberEditPage}"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom"
@@ -262,7 +262,7 @@
 
         <Button Margin="0,6,145,10"
                 Content="Abbrechen"
-                Command="{Binding Source={StaticResource EditMemberManager}, Path=CloseCommand}"
+                Command="{Binding CloseCommand}"
                 CommandParameter="{Binding ElementName=MemberEditPage}"
                 Style="{StaticResource SquareButtonStyle}"
                 HorizontalAlignment="Right"

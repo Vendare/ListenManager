@@ -294,9 +294,18 @@ namespace ListenManager.Database.Handlers
             _context.SaveChanges();
         }
 
-        public void RemoveMitgliedFromList(Verzeichnis verz, Mitglied md)
+        public void RemoveMitgliedFromList(Verzeichnis verz, List<Mitglied> mitglieder)
         {
-            verz.Mitglieder.Remove(md);
+            foreach (var md in mitglieder)
+            {
+                verz.Mitglieder.Remove(md);
+            }
+            _context.SaveChanges();
+        }
+
+        public void RemoveVerzeichnis(Verzeichnis verz)
+        {
+            _context.Verzeichnisse.Remove(verz);
             _context.SaveChanges();
         }
     }

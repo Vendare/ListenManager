@@ -28,6 +28,15 @@
                                          ItemsSource="{Binding Path=Listen}"
                                          SelectedItem="{Binding Path=SelectedListe}"
                                          SelectionMode="Single" >
+                                    <ListBox.ContextMenu>
+                                        <ContextMenu StaysOpen="False">
+                                            <MenuItem Header="Ändern" Command="{Binding EditListCommand}" />
+                                            <MenuItem Header="Löschen" Command="{Binding DeleteListCommand}" />
+                                            <Separator />
+                                            <MenuItem Header="Mitglied Hinzufügen" Command="{Binding }" />
+                                            <MenuItem Header="Neues Mitglied anlegen" Command="{Binding AddMemberCommand}"/>
+                                        </ContextMenu>
+                                    </ListBox.ContextMenu>
                                     <ListBox.InputBindings>
                                         <MouseBinding Gesture="LeftDoubleClick" Command="{Binding  Path=EditListCommand}"/>
                                     </ListBox.InputBindings>
@@ -66,6 +75,15 @@
                                           SelectionMode="Single"
                                           SelectedItem="{Binding  Path=SelectedVereinsMitglied}"
                                           GridLinesVisibility="All">
+                                    <DataGrid.ContextMenu>
+                                        <ContextMenu StaysOpen="False">
+                                            <MenuItem Header="Ändern" Command="{Binding UpdateMemberCommand}" />
+                                            <MenuItem Header="Löschen" Command="{Binding DeleteMemberCommand}" />
+                                            <Separator />
+                                            <MenuItem Header="Mitglied Hinzufügen" Command="{Binding EditListCommand}" />
+                                            <MenuItem Header="Neues Mitglied anlegen" Command="{Binding AddMemberCommand}"/>
+                                        </ContextMenu>
+                                    </DataGrid.ContextMenu>
                                     <DataGrid.InputBindings>
                                         <MouseBinding Gesture="LeftDoubleClick" Command="{Binding  Path=UpdateMemberCommand}"/>
                                     </DataGrid.InputBindings>

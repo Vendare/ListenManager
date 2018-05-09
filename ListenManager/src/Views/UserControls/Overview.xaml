@@ -31,7 +31,7 @@
                     <MenuItem Header="Ändern" Command="{Binding UpdateMemberCommand}" />
                     <MenuItem Header="Löschen" Command="{Binding DeleteMemberCommand}" />
                     <Separator />
-                    <MenuItem Header="Benutzer Hinzufügen" Command="{Binding AddMemberCommand}" />
+                    <MenuItem Header="Neues Mitglied anlegen" Command="{Binding AddMemberCommand}"/>
                 </ContextMenu>
             </DataGrid.ContextMenu>
             <DataGrid.Columns>

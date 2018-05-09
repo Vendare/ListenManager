@@ -14,8 +14,10 @@
         Width="900"
         WindowStartupLocation="CenterOwner"
         IsCloseButtonEnabled="False">
+    <mah:MetroWindow.DataContext>
+        <elm:EditListManager />
+    </mah:MetroWindow.DataContext>
     <mah:MetroWindow.Resources>
-        <elm:EditListManager x:Key="EditListManager" />
         <con:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
     </mah:MetroWindow.Resources>
     <Grid>
@@ -37,7 +39,7 @@
                  Height="30"
                  Width="210"
                  Grid.Row="0"
-                 Text="{Binding Source={StaticResource EditListManager}, Path=Liste.Name}"
+                 Text="{Binding Liste.Name}"
                  VerticalAlignment="Top"
                  HorizontalAlignment="Left"/>
         <GroupBox Margin="0"
@@ -59,7 +61,7 @@
                                   OffLabel="Unsichtbar"
                                   Height="60"
                                   Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
-                                  IsChecked="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.MitgliednrVisible}"
+                                  IsChecked="{Binding VisibleFields.MitgliednrVisible}"
                                   VerticalAlignment="Top"
                                   />
 
@@ -70,7 +72,7 @@
                                   Height="60"
                                   
                                   Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
-                                  IsChecked="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.AnredeVisible}"
+                                  IsChecked="{Binding VisibleFields.AnredeVisible}"
                                   VerticalAlignment="Top"
                                   HorizontalAlignment="Left"/>
 
@@ -80,7 +82,7 @@
                                   OffLabel="Unsichtbar"
                                   Height="60"
                                   Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
-                                  IsChecked="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.VornameVisible}"
+                                  IsChecked="{Binding VisibleFields.VornameVisible}"
                                   VerticalAlignment="Top"
                                   />
 
@@ -90,7 +92,7 @@
                                               OffLabel="Unsichtbar"
                                               Height="60"
                                               Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
-                                              IsChecked="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.NameVisible}"
+                                              IsChecked="{Binding VisibleFields.NameVisible}"
                                               VerticalAlignment="Top" 
                                               />
 
@@ -100,7 +102,7 @@
                                               OffLabel="Unsichtbar"
                                               Height="60"
                                               Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
-                                              IsChecked="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.EintrittsdatumVisible}"
+                                              IsChecked="{Binding VisibleFields.EintrittsdatumVisible}"
                                               VerticalAlignment="Top"
                                               />
 
@@ -110,7 +112,7 @@
                                               OffLabel="Unsichtbar"
                                               Height="60"
                                               Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
-                                              IsChecked="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.GeburtsdatumVisible}"
+                                              IsChecked="{Binding VisibleFields.GeburtsdatumVisible}"
                                               VerticalAlignment="Top"
                                               />
                         </Grid>
@@ -126,7 +128,7 @@
                                   OffLabel="Unsichtbar"
                                   Height="60"
                                   Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
-                                  IsChecked="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.StraßeVisible}"
+                                  IsChecked="{Binding VisibleFields.StraßeVisible}"
                                   VerticalAlignment="Top"
                                   />
 
@@ -136,7 +138,7 @@
                                   OffLabel="Unsichtbar"
                                   Height="60"
                                   Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
-                                  IsChecked="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.PostleitzahlVisible}"
+                                  IsChecked="{Binding VisibleFields.PostleitzahlVisible}"
                                   VerticalAlignment="Top"
                                   />
 
@@ -146,7 +148,7 @@
                                   OffLabel="Unsichtbar"
                                   Height="60"
                                   Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
-                                  IsChecked="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.OrtVisible}"
+                                  IsChecked="{Binding VisibleFields.OrtVisible}"
                                   VerticalAlignment="Top"
                                   />
 
@@ -156,7 +158,7 @@
                                   OffLabel="Unsichtbar"
                                   Height="60"
                                   Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
-                                  IsChecked="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.BundeslandVisible}"
+                                  IsChecked="{Binding VisibleFields.BundeslandVisible}"
                                   VerticalAlignment="Top"
                                   />
                         </Grid>
@@ -172,7 +174,7 @@
                                   OffLabel="Unsichtbar"
                                   Height="60"
                                   Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
-                                  IsChecked="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.EmailVisible}"
+                                  IsChecked="{Binding VisibleFields.EmailVisible}"
                                   VerticalAlignment="Top"
                                   />
 
@@ -182,7 +184,7 @@
                                   OffLabel="Unsichtbar"
                                   Height="60"
                                   Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
-                                  IsChecked="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.TelefonVisible}"
+                                  IsChecked="{Binding VisibleFields.TelefonVisible}"
                                   VerticalAlignment="Top"
                                   />
 
@@ -193,7 +195,7 @@
                                   Height="60"
                                   
                                   Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
-                                  IsChecked="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.MobilVisible}"
+                                  IsChecked="{Binding VisibleFields.MobilVisible}"
                                   VerticalAlignment="Top"
                                   />
                         </Grid>
@@ -210,7 +212,7 @@
                                   OffLabel="Unsichtbar"
                                   Height="60"
                                   Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
-                                  IsChecked="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.IbanVisible}"
+                                  IsChecked="{Binding VisibleFields.IbanVisible}"
                                   VerticalAlignment="Top"
                                   />
 
@@ -220,7 +222,7 @@
                                   OffLabel="Unsichtbar"
                                   Height="60"
                                   Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
-                                  IsChecked="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.BicVisible}"
+                                  IsChecked="{Binding VisibleFields.BicVisible}"
                                   VerticalAlignment="Top"
                                   />
 
@@ -230,7 +232,7 @@
                                   OffLabel="Unsichtbar"
                                   Height="60"
                                   Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
-                                  IsChecked="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.KreditinstitutVisible}"
+                                  IsChecked="{Binding VisibleFields.KreditinstitutVisible}"
                                   VerticalAlignment="Top"
                                   />
                         </Grid>
@@ -241,7 +243,7 @@
         <GroupBox Margin="0"
                   Header="Mitglieder bereits in der Liste" 
                   Grid.Row="2">
-            <DataGrid ItemsSource="{Binding Source={StaticResource EditListManager}, Path=MitgliederInList}" 
+            <DataGrid ItemsSource="{Binding MitgliederInList}" 
                       IsReadOnly="True" 
                       AutoGenerateColumns="False"
                       dd:DragDrop.IsDragSource="True"
@@ -249,43 +251,43 @@
                       dd:DragDrop.UseDefaultDragAdorner="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding Mitgliedsnr}" Header="Mitgliedsnummer" 
-                                                            Visibility="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.MitgliednrVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
+                                                            Visibility="{Binding VisibleFields.MitgliednrVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
                     <DataGridTextColumn Binding="{Binding Anrede}" Header="Anrede" 
-                                                            Visibility="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.AnredeVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
+                                                            Visibility="{Binding VisibleFields.AnredeVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
                     <DataGridTextColumn Binding="{Binding Vorname}" Header="Vorname" 
-                                                            Visibility="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.VornameVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
+                                                            Visibility="{Binding VisibleFields.VornameVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
                     <DataGridTextColumn Binding="{Binding Name}" Header="Nachname" 
-                                                            Visibility="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.NameVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
+                                                            Visibility="{Binding VisibleFields.NameVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
                     <DataGridTextColumn Binding="{Binding Straße}" Header="Straße" 
-                                                            Visibility="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.StraßeVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
+                                                            Visibility="{Binding VisibleFields.StraßeVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
                     <DataGridTextColumn Binding="{Binding Postleitzahl}" Header="Postleitzahl" 
-                                                            Visibility="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.PostleitzahlVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
+                                                            Visibility="{Binding VisibleFields.PostleitzahlVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
                     <DataGridTextColumn Binding="{Binding Ort}" Header="Ort"
-                                                            Visibility="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.OrtVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
+                                                            Visibility="{Binding VisibleFields.OrtVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
                     <DataGridTextColumn Binding="{Binding Bundesland}" Header="Bundesland"
-                                                            Visibility="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.BundeslandVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
+                                                            Visibility="{Binding VisibleFields.BundeslandVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
                     <DataGridTextColumn Binding="{Binding Email}" Header="E-Mail" 
-                                                            Visibility="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.EmailVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
+                                                            Visibility="{Binding VisibleFields.EmailVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
                     <DataGridTextColumn Binding="{Binding Telefon}" Header="Telefon"
-                                                            Visibility="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.TelefonVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
+                                                            Visibility="{Binding VisibleFields.TelefonVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
                     <DataGridTextColumn Binding="{Binding Mobil}" Header="Mobil" 
-                                                            Visibility="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.MobilVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
+                                                            Visibility="{Binding VisibleFields.MobilVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
                     <DataGridTextColumn Binding="{Binding Eintrittsdatum, StringFormat={}{0:dd.MM.yyyy}, Mode=OneWay}" Header="Eintrittsdatum"
-                                                            Visibility="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.EintrittsdatumVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
+                                                            Visibility="{Binding VisibleFields.EintrittsdatumVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
                     <DataGridTextColumn Binding="{Binding Geburtsdatum, StringFormat={}{0:dd.MM.yyyy}, Mode=OneWay}" Header="Geburtsdatum" 
-                                                            Visibility="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.GeburtsdatumVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
+                                                            Visibility="{Binding VisibleFields.GeburtsdatumVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
                     <DataGridTextColumn Binding="{Binding Iban}" Header="IBAN" 
-                                                            Visibility="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.IbanVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
+                                                            Visibility="{Binding VisibleFields.IbanVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
                     <DataGridTextColumn Binding="{Binding Bic}" Header="BIC" 
-                                                            Visibility="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.BicVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
+                                                            Visibility="{Binding VisibleFields.BicVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
                     <DataGridTextColumn Binding="{Binding Kreditinstitut}" Header="Kreditinstitut"
-                                                            Visibility="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.KreditinstitutVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
+                                                            Visibility="{Binding VisibleFields.KreditinstitutVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </GroupBox>
         <GroupBox Header="Verfügbare Mitglieder" 
                   Grid.Row="3">
-            <DataGrid ItemsSource="{Binding Source={StaticResource EditListManager}, Path=AvailableMitglieder}"
+            <DataGrid ItemsSource="{Binding AvailableMitglieder}"
                       IsReadOnly="True"
                       AutoGenerateColumns="False"
                       SelectionMode="Extended"
@@ -294,37 +296,37 @@
                       dd:DragDrop.UseDefaultDragAdorner="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding Mitgliedsnr}" Header="Mitgliedsnummer" 
-                                                            Visibility="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.MitgliednrVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
+                                                            Visibility="{Binding VisibleFields.MitgliednrVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
                     <DataGridTextColumn Binding="{Binding Anrede}" Header="Anrede" 
-                                                            Visibility="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.AnredeVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
+                                                            Visibility="{Binding VisibleFields.AnredeVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
                     <DataGridTextColumn Binding="{Binding Vorname}" Header="Vorname" 
-                                                            Visibility="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.VornameVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
+                                                            Visibility="{Binding VisibleFields.VornameVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
                     <DataGridTextColumn Binding="{Binding Name}" Header="Nachname" 
-                                                            Visibility="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.NameVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
+                                                            Visibility="{Binding VisibleFields.NameVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
                     <DataGridTextColumn Binding="{Binding Straße}" Header="Straße" 
-                                                            Visibility="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.StraßeVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
+                                                            Visibility="{Binding VisibleFields.StraßeVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
                     <DataGridTextColumn Binding="{Binding Postleitzahl}" Header="Postleitzahl" 
-                                                            Visibility="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.PostleitzahlVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
+                                                            Visibility="{Binding VisibleFields.PostleitzahlVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
                     <DataGridTextColumn Binding="{Binding Ort}" Header="Ort"
-                                                            Visibility="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.OrtVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
+                                                            Visibility="{Binding VisibleFields.OrtVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
                     <DataGridTextColumn Binding="{Binding Bundesland}" Header="Bundesland"
-                                                            Visibility="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.BundeslandVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
+                                                            Visibility="{Binding VisibleFields.BundeslandVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
                     <DataGridTextColumn Binding="{Binding Email}" Header="E-Mail" 
-                                                            Visibility="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.EmailVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
+                                                            Visibility="{Binding VisibleFields.EmailVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
                     <DataGridTextColumn Binding="{Binding Telefon}" Header="Telefon"
-                                                            Visibility="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.TelefonVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
+                                                            Visibility="{Binding VisibleFields.TelefonVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
                     <DataGridTextColumn Binding="{Binding Mobil}" Header="Mobil" 
-                                                            Visibility="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.MobilVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
+                                                            Visibility="{Binding VisibleFields.MobilVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
                     <DataGridTextColumn Binding="{Binding Eintrittsdatum, StringFormat={}{0:dd.MM.yyyy}, Mode=OneWay}" Header="Eintrittsdatum"
-                                                            Visibility="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.EintrittsdatumVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
+                                                            Visibility="{Binding VisibleFields.EintrittsdatumVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
                     <DataGridTextColumn Binding="{Binding Geburtsdatum, StringFormat={}{0:dd.MM.yyyy}, Mode=OneWay}" Header="Geburtsdatum" 
-                                                            Visibility="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.GeburtsdatumVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
+                                                            Visibility="{Binding VisibleFields.GeburtsdatumVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
                     <DataGridTextColumn Binding="{Binding Iban}" Header="IBAN" 
-                                                            Visibility="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.IbanVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
+                                                            Visibility="{Binding VisibleFields.IbanVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
                     <DataGridTextColumn Binding="{Binding Bic}" Header="BIC" 
-                                                            Visibility="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.BicVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
+                                                            Visibility="{Binding VisibleFields.BicVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
                     <DataGridTextColumn Binding="{Binding Kreditinstitut}" Header="Kreditinstitut"
-                                                            Visibility="{Binding Source={StaticResource EditListManager}, Path=VisibleFields.KreditinstitutVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
+                                                            Visibility="{Binding VisibleFields.KreditinstitutVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </GroupBox>
@@ -334,7 +336,7 @@
                 Height="30"
                 Width="120"
                 Style="{DynamicResource AccentedSquareButtonStyle}"
-                Command="{Binding Source={StaticResource EditListManager}, Path=SaveCommand}"
+                Command="{Binding SaveCommand}"
                 CommandParameter="{Binding ElementName=ListEditPage}"
                 VerticalAlignment="Bottom"
                 HorizontalAlignment="Right"/>
@@ -345,7 +347,7 @@
                 Height="30"
                 Width="120"
                 Style="{DynamicResource SquareButtonStyle}"
-                Command="{Binding Source={StaticResource EditListManager}, Path=CloseCommand}"
+                Command="{Binding CloseCommand}"
                 CommandParameter="{Binding ElementName=ListEditPage}"
                 VerticalAlignment="Bottom"
                 HorizontalAlignment="Right"/>

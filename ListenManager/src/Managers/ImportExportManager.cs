@@ -139,11 +139,8 @@ namespace ListenManager.Managers
         }
 
         public ICommand SelectInputFileCommand => _inputFileCommand ?? (_inputFileCommand = new RelayCommand(SelectInputFile));
-
         public ICommand SelectOutputFileCommand => _outputFileCommand ?? (_outputFileCommand = new RelayCommand(SelectOutputFile));
-
         public ICommand ImportCommand => _importCommand ?? (_importCommand = new RelayCommand(ImportData));
-
         public ICommand ExportCommand => _exportCommand ?? (_exportCommand = new RelayCommand(ExportData));
 
         private void SelectInputFile()
