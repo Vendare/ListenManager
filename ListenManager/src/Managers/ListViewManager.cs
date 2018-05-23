@@ -144,6 +144,8 @@ namespace ListenManager.Managers
             if (msg.ReloadAllData)
             {
                 Listen = _handler.GetAllVerzeichnisse();
+                Mitglieder = _handler.GetMitgliederInVerzeichnis(SelectedListe.SourceVerzeichnis.ID);
+                VisibleFields = _handler.GetFieldVisibilitiesForGivenList(SelectedListe.SourceVerzeichnis.ID);
             }
             else
             {

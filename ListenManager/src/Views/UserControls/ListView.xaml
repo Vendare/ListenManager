@@ -6,14 +6,16 @@
              xmlns:ad="http://schemas.xceed.com/wpf/xaml/avalondock"
              xmlns:vm="clr-namespace:ListenManager.Managers"
              xmlns:conv="clr-namespace:ListenManager.Views.Converter"
+             xmlns:dpr="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
              mc:Ignorable="d" 
+             dpr:DialogParticipation.Register="{Binding}"
              d:DesignHeight="300" 
              d:DesignWidth="800">
     <UserControl.Resources>
         <conv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
     </UserControl.Resources>
     <UserControl.DataContext>
-        <vm:ListViewManager/>
+        <vm:ListViewManager x:Name="ListViewManager"/>
     </UserControl.DataContext>
     <ad:DockingManager>
         <ad:LayoutRoot >
@@ -38,7 +40,8 @@
                                         </ContextMenu>
                                     </ListBox.ContextMenu>
                                     <ListBox.InputBindings>
-                                        <MouseBinding Gesture="LeftDoubleClick" Command="{Binding  Path=EditListCommand}"/>
+                                        <MouseBinding Gesture="LeftDoubleClick" Command="{Binding EditListCommand}"/>
+                                        <KeyBinding Key="Delete" Command="{Binding DeleteListCommand}" />
                                     </ListBox.InputBindings>
                                 </ListBox>
 
@@ -49,7 +52,7 @@
                                         VerticalAlignment="Bottom"
                                         Background="{DynamicResource AccentColorBrush}"
                                         Style="{DynamicResource MetroCircleButtonStyle}"
-                                        Command="{Binding  Path=AddListCommand}">
+                                        Command="{Binding AddListCommand}">
                                         <Rectangle Width="20" Height="20">
                                             <Rectangle.Fill>
                                                 <VisualBrush Visual="{StaticResource appbar_add}" Stretch="Fill" />
@@ -71,9 +74,9 @@
                                           CanUserAddRows="False" 
                                           CanUserDeleteRows="False" 
                                           IsReadOnly="True" 
-                                          ItemsSource="{Binding  Path=Mitglieder}"
+                                          ItemsSource="{Binding Mitglieder}"
                                           SelectionMode="Single"
-                                          SelectedItem="{Binding  Path=SelectedVereinsMitglied}"
+                                          SelectedItem="{Binding SelectedVereinsMitglied}"
                                           GridLinesVisibility="All">
                                     <DataGrid.ContextMenu>
                                         <ContextMenu StaysOpen="False">
@@ -85,41 +88,42 @@
                                         </ContextMenu>
                                     </DataGrid.ContextMenu>
                                     <DataGrid.InputBindings>
-                                        <MouseBinding Gesture="LeftDoubleClick" Command="{Binding  Path=UpdateMemberCommand}"/>
+                                        <MouseBinding Gesture="LeftDoubleClick" Command="{Binding UpdateMemberCommand}"/>
+                                        <KeyBinding Key="Delete" Command="{Binding DeleteMemberCommand}" />
                                     </DataGrid.InputBindings>
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Binding="{Binding Mitgliedsnr}" Header="Mitgliedsnummer" 
-                                                            Visibility="{Binding  Path=VisibleFields.MitgliednrVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
+                                                            Visibility="{Binding VisibleFields.MitgliednrVisible, Source={x:Reference ListViewManager}, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
                                         <DataGridTextColumn Binding="{Binding Anrede}" Header="Anrede" 
-                                                            Visibility="{Binding  Path=VisibleFields.AnredeVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
+                                                            Visibility="{Binding VisibleFields.AnredeVisible, Source={x:Reference ListViewManager}, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
                                         <DataGridTextColumn Binding="{Binding Vorname}" Header="Vorname" 
-                                                            Visibility="{Binding  Path=VisibleFields.VornameVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
+                                                            Visibility="{Binding VisibleFields.VornameVisible, Source={x:Reference ListViewManager}, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
                                         <DataGridTextColumn Binding="{Binding Name}" Header="Nachname" 
-                                                            Visibility="{Binding  Path=VisibleFields.NameVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
+                                                            Visibility="{Binding VisibleFields.NameVisible, Source={x:Reference ListViewManager}, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
                                         <DataGridTextColumn Binding="{Binding Straße}" Header="Straße" 
-                                                            Visibility="{Binding  Path=VisibleFields.StraßeVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
+                                                            Visibility="{Binding VisibleFields.StraßeVisible, Source={x:Reference ListViewManager}, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
                                         <DataGridTextColumn Binding="{Binding Postleitzahl}" Header="Postleitzahl" 
-                                                            Visibility="{Binding  Path=VisibleFields.PostleitzahlVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
+                                                            Visibility="{Binding VisibleFields.PostleitzahlVisible, Source={x:Reference ListViewManager}, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
                                         <DataGridTextColumn Binding="{Binding Ort}" Header="Ort"
-                                                            Visibility="{Binding  Path=VisibleFields.OrtVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
+                                                            Visibility="{Binding VisibleFields.OrtVisible, Source={x:Reference ListViewManager}, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
                                         <DataGridTextColumn Binding="{Binding Bundesland}" Header="Bundesland"
-                                                            Visibility="{Binding  Path=VisibleFields.BundeslandVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
+                                                            Visibility="{Binding VisibleFields.BundeslandVisible, Source={x:Reference ListViewManager}, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" />
                                         <DataGridTextColumn Binding="{Binding Email}" Header="E-Mail" 
-                                                            Visibility="{Binding  Path=VisibleFields.EmailVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
+                                                            Visibility="{Binding VisibleFields.EmailVisible, Source={x:Reference ListViewManager}, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
                                         <DataGridTextColumn Binding="{Binding Telefon}" Header="Telefon"
-                                                            Visibility="{Binding  Path=VisibleFields.TelefonVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
+                                                            Visibility="{Binding VisibleFields.TelefonVisible, Source={x:Reference ListViewManager}, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
                                         <DataGridTextColumn Binding="{Binding Mobil}" Header="Mobil" 
-                                                            Visibility="{Binding  Path=VisibleFields.MobilVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
+                                                            Visibility="{Binding VisibleFields.MobilVisible, Source={x:Reference ListViewManager}, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
                                         <DataGridTextColumn Binding="{Binding Eintrittsdatum, StringFormat={}{0:dd.MM.yyyy}, Mode=OneWay}" Header="Eintrittsdatum"
-                                                            Visibility="{Binding  Path=VisibleFields.EintrittsdatumVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
+                                                            Visibility="{Binding VisibleFields.EintrittsdatumVisible, Source={x:Reference ListViewManager}, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
                                         <DataGridTextColumn Binding="{Binding Geburtsdatum, StringFormat={}{0:dd.MM.yyyy}, Mode=OneWay}" Header="Geburtsdatum" 
-                                                            Visibility="{Binding  Path=VisibleFields.GeburtsdatumVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
+                                                            Visibility="{Binding VisibleFields.GeburtsdatumVisible, Source={x:Reference ListViewManager}, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
                                         <DataGridTextColumn Binding="{Binding Iban}" Header="IBAN" 
-                                                            Visibility="{Binding  Path=VisibleFields.IbanVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
+                                                            Visibility="{Binding VisibleFields.IbanVisible, Source={x:Reference ListViewManager}, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
                                         <DataGridTextColumn Binding="{Binding Bic}" Header="BIC" 
-                                                            Visibility="{Binding  Path=VisibleFields.BicVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
+                                                            Visibility="{Binding VisibleFields.BicVisible, Source={x:Reference ListViewManager}, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
                                         <DataGridTextColumn Binding="{Binding Kreditinstitut}" Header="Kreditinstitut"
-                                                            Visibility="{Binding  Path=VisibleFields.KreditinstitutVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
+                                                            Visibility="{Binding VisibleFields.KreditinstitutVisible, Source={x:Reference ListViewManager}, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
                                     </DataGrid.Columns>
                                 </DataGrid>
                                 <Button Margin="0,0,0,0"
@@ -129,7 +133,7 @@
                                         VerticalAlignment="Bottom"
                                         Background="{DynamicResource AccentColorBrush}"
                                         Style="{DynamicResource MetroCircleButtonStyle}"
-                                        Command="{Binding  Path=EditListCommand}">
+                                        Command="{Binding EditListCommand}">
                                     <Rectangle Width="20" Height="20">
                                             <Rectangle.Fill>
                                                 <VisualBrush Visual="{StaticResource appbar_add}" Stretch="Fill" />

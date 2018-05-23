@@ -18,7 +18,6 @@ namespace ListenManager.Managers
 {
     public class ImportExportManager : BaseManager
     {
-        private readonly IDialogCoordinator _coordinator;
         private readonly VerzeichnisHandler _handler;
 
         private int _inputRowCount;
@@ -39,7 +38,6 @@ namespace ListenManager.Managers
 
         public ImportExportManager()
         {
-            _coordinator = DialogCoordinator.Instance;
             _handler = VerzeichnisHandler.Instance;
 
             SheetIndex = 1;
@@ -184,7 +182,7 @@ namespace ListenManager.Managers
 
         private async void ImportData()
         {
-            var controller = await _coordinator.ShowProgressAsync(this, "Lese Daten", "Initialisiere", true);
+            var controller = await Coordinator.ShowProgressAsync(this, "Lese Daten", "Initialisiere", true);
             controller.SetIndeterminate();
 
             var worker = new BackgroundWorker
@@ -225,7 +223,7 @@ namespace ListenManager.Managers
 
         private async void ExportData()
         {
-            var controller = await _coordinator.ShowProgressAsync(this, "Lese Daten", "Initialisiere", true);
+            var controller = await Coordinator.ShowProgressAsync(this, "Lese Daten", "Initialisiere", true);
             controller.SetIndeterminate();
 
             var worker = new BackgroundWorker

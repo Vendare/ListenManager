@@ -6,7 +6,9 @@
              xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
              xmlns:att="clr-namespace:WpfRichText;assembly=WpfRichText"
              xmlns:managers="clr-namespace:ListenManager.Managers"
+             xmlns:dpr="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
              mc:Ignorable="d" 
+             dpr:DialogParticipation.Register="{Binding}"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.DataContext>
         <managers:MailViewManager x:Name="MailViewManager" />
